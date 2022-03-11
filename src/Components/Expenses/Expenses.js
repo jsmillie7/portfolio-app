@@ -1,6 +1,10 @@
 import {Box, Button, Card, CardActions, CardContent, Link, Typography} from "@mui/material";
+import { useContext } from "react";
+import { AppContext } from "../../App";
 
 export default function Expenses() {
+    const {currentPage, handleChange} = useContext(AppContext)
+
     return (
         <Card
             sx={{
@@ -18,7 +22,7 @@ export default function Expenses() {
                             fontSize: 16
                         }}
                     >
-                        Hey, I'm
+                        Hey there, I'm
                     </Typography>
                     <Typography variant={'h4'} gutterBottom color={'text.secondary'} sx={{ fontWeight: 520 }}>
                         James Smillie.
@@ -44,6 +48,7 @@ export default function Expenses() {
                 <Button
                     variant={'contained'}
                     color={'secondary'}
+                    onClick={() => handleChange(currentPage+1)}
                 >
                     Find out more
                 </Button>

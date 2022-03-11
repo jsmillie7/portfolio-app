@@ -6,12 +6,14 @@ import {
     createTheme,
     CssBaseline, Slide,
     ThemeProvider, Toolbar,
-    Typography
+    Typography, Stack, useMediaQuery,
+    IconButton, Menu
 } from "@mui/material";
 import MenuList from "@mui/material/MenuList";
 import {getPages} from "./pages";
-import {createContext, useContext, useEffect, useMemo, useState} from "react";
+import React, {createContext, useContext, useEffect, useMemo, useState} from "react";
 import MenuItem from "@mui/material/MenuItem";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Expenses from "./Components/Expenses/Expenses";
@@ -76,43 +78,54 @@ const themeDark = createTheme({
         },
     }
 });
-// const themeDark = createTheme({
-//     palette: {
-//         background: {
-//             default: "#382933"
-//         },
-//         text: {
-//             primary: "#A4B494",
-//             secondary: "#519872"
-//         },
-//         icon: {
-//             default: "#3B5249"
-//         },
-//     }
-// });
 
-// ORIGINAL
-// const themeDark = createTheme({
-//     palette: {
-//         background: {
-//             default: "#222222"
-//         },
-//         text: {
-//             primary: "#ffffff",
-//             secondary: "#D3D3D3"
-//         },
-//         icon: {
-//             default: "#FF0000"
-//         },
-//     }
-// });
 
+export const AppContext = createContext();
+
+
+let appVersion = 'v0.3';
 
 export default function App() {
     const pages = getPages();
-    const [light, setLight] = useState(false);
-    // const [light, setLight] = useState(true);
+    const [darkMode, setDarkMode] = useState(true);
+    const [collapseDir, setCollapseDir] = useState('up');
     const [showSlide, setShowSlide] = useState(true);
+    const [currentPage, setCurrentPage] = useState(0)
+    const [queuedPage, setQueuedPage] = useState(0)
+    const [dirUp, setDirUp] = useState(true)
+    const isMobile = useMediaQuery('(max-width: 760px)')
+    const transitionTime = 200;
+
+    useEffect(() => {
+      console.debug('New Index =', currentPage)
+      if (currentPage < 0) {
+        setTimeout(() => {
+          console.debug('Transitioning in second page')
+          setCurrentPage(-1*currentPage)
+        }, transitionTime)
+      } else {
+        console.debug('Completed transition!')
+      }
+    }, [currentPage])
+
+    useEffect(() => {
+      console.debug('queued page changed to ', queuedPage, '. Current page transisioning out.')
+      setTimeout(() => {
+        console.debug('Set direction after transition completes')
+        setDirUp(!dirUp)
+      }, transitionTime)
+    }, [queuedPage])
+
+    useEffect(() => {
+      console.debug('Direction changed')
+      if (currentPage !== queuedPage) {
+        console.debug('Need to bring new page in')
+        setCurrentPage(queuedPage)
+      } else {
+        console.debug('Starting page transition')
+      }
+    }, [dirUp])
+
 
     // Handle swipes:
     // https://developer.chrome.com/docs/devtools/remote-debugging/
@@ -123,118 +136,224 @@ export default function App() {
     // window.addEventListener("touchmove", handleScroll);
     // window.removeEventListener("touchmove", handleScroll);
 
-    useEffect(() => {
-        window.addEventListener("wheel", handleScroll);
-        return () => {
-            window.removeEventListener("wheel", handleScroll);
-        }
-    }, [showSlide])
-    // window.addEventListener("wheel", handleScroll);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         window.addEventListener("wheel", handleScroll);
+    //         console.log('pos', value)
+    //     }, 1000);
+    //
+    //     return () => {
+    //         clearTimeout(timer);
+    //         window.removeEventListener("wheel", handleScroll);
+    //     }
+    // }, [showSlide])
     // window.addEventListener("touchmove", handleScroll);
 
-    function handleScroll(e) {
-        // console.log('Got scroll event', e.deltaY)
-        if (e.deltaY > 0 && showSlide) {
-            console.log('Go Down')
-            setShowSlide(false)
-        } else if (e.deltaY < 0 && !showSlide) {
-            console.log('Go Up')
-            setShowSlide(true)
-        }
-        // if e.deltaY
-        // let element = e.target
-        // if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-            // do something at end of scroll
-            // console.log('At end of container')
-        // }
+
+//    function handleScroll(e) {
+//        console.log('Got scroll event', e.deltaY)
+//        // if (e.deltaY > 0) {
+//        //     console.log('Go Down')
+//        //     if (currentPage < pages.length-1) {
+//        //         handleChange(currentPage+1)
+//        //     }
+//        // } else if (e.deltaY < 0) {
+//        //     console.log('Go Up')
+//        //     if (currentPage > 0) {
+//        //         handleChange(currentPage-1)
+//        //     }
+//        //
+//        // }
+//    }
+
+    function handleChange(newPage) {
+      if (currentPage === newPage) {
+        console.debug('Already on this page, nothing to change.')
+        return
+      }
+      const delta = currentPage - newPage;
+      setDirUp(delta > 0)
+      setTimeout(() => {
+        setQueuedPage(newPage)
+      }, 10)
+      // Adjust this timeout delay if the directions are not being set in time 
     }
 
+    const appVars = useMemo(() => ({
+      pages, currentPage, setCurrentPage, handleChange, isMobile
+  }), [currentPage, isMobile])
+
+
+    function buildMenu() {
+      return (
+        pages.map((page, idx) => (
+          <DrawerItem page={page} index={idx} callback={handleChange}/>
+      )))
+    }
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleShowMobileMenu = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleCloseMobileMenu = () => {
+      setAnchorEl(null);
+    };
+
     return (
-        <ThemeProvider theme={light ? themeLight : themeDark}>
-            {/*<Box overflow={'hidden'} height="100vh" display="flex" flexDirection="column" onWheel={handleScroll}>*/}
+        <ThemeProvider theme={darkMode ? themeDark: themeLight}>
+            <AppContext.Provider value={appVars}>
             <Box overflow={'hidden'} height="100vh" display="flex" flexDirection="column">
                 <CssBaseline />
-                {/*<AppBar position="sticky" sx={{bgcolor: "background.default"}} elevation={4}>*/}
                 <AppBar position="absolute" sx={{bgcolor: "background.default"}} elevation={4}>
-                    <Toolbar>
-                        <Typography
-                            color={'text.primary'}
-                            variant={'h4'}
-                            component="div"
-                            sx={{
-                                flexGrow: 1,
-                                fontWeight: 550
-                            }}
+                  <Toolbar>
+                    <Typography
+                      color={'text.primary'}
+                      variant={'h5'}
+                      component="div"
+                      sx={{
+                        fontFamily: 'monospace',
+                        flexGrow: 1,
+                        fontWeight: 550,
+                        userSelect: 'none'
+                      }}
+                    >
+                      js_{pages[currentPage].dispName.toLowerCase()}
+                    </Typography>
+                    {isMobile ?  
+                      <React.Fragment>
+                        <IconButton
+                          onClick={handleShowMobileMenu}
+                          size="large"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? 'account-menu' : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? 'true' : undefined}
+                          color={'primary'}
                         >
-                            JS
-                        </Typography>
-                        <Button
-                            variant={'contained'}
-                            color={'primary'}
-                            onClick={() => setShowSlide(!showSlide)}
+                          <MenuRoundedIcon sx={{ width: 32, height: 32 }} />
+                        </IconButton>
+                        <Menu
+                          anchorEl={anchorEl}
+                          id="account-menu"
+                          open={open}
+                          onClose={handleCloseMobileMenu}
+                          onClick={handleCloseMobileMenu}
+                          color={'background.light'}
+                          PaperProps={{
+                            elevation: 0,
+                            sx: {
+                              overflow: 'visible',
+                              filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                              mt: 1.5,
+                              bgcolor: 'background.light',
+                              '& .MuiAvatar-root': {
+                                width: 32,
+                                height: 32,
+                                ml: -0.5,
+                                mr: 1,
+                                bgcolor: 'background.light',
+                              },
+                              '&:before': {
+                                content: '""',
+                                display: 'block',
+                                position: 'absolute',
+                                top: 0,
+                                right: 14,
+                                width: 10,
+                                height: 10,
+                                bgcolor: 'background.light',
+                                transform: 'translateY(-50%) rotate(45deg)',
+                                zIndex: 0,
+                              },
+                            },
+                          }}
+                          transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            Résumé
-                        </Button>
-                    </Toolbar>
+                          {buildMenu()}
+                        </Menu>
+                      </React.Fragment>
+                    : 
+                      <Button
+                        variant={'contained'}
+                        color={'primary'}
+                      >
+                        Résumé
+                    </Button>}
+                  </Toolbar>
                 </AppBar>
-                <MenuList sx={{position: 'absolute', top: "15%"}}>
-                    {pages.map((page, idx) => (
-                        <DrawerItem page={page} index={idx}/>
-                    ))}
-                </MenuList>
-
+                {!isMobile && 
+                  <MenuList sx={{position: 'absolute', top: "15%"}}>
+                    {buildMenu()}
+                  </MenuList>
+                }
                 <Box height={'100%'}>
-                    {/*<Outlet />*/}
                     <Container
                         sx={{
-                            maxWidth: '75%',
+                            maxWidth: isMobile ? '100%' : '75%',
                             height: "100%",
                             justifyContent: 'center',
                             alignItems: 'center',
                             display: 'flex'
                         }}
                     >
-                        <Slide
-                            // direction={showSlide ? "up" : "down"}
-                            direction={"down"}
-                            in={showSlide}
+                      <Stack direction='column'>
+                      {pages.map((page, idx) => {
+                        const PageComponent=page.component
+                        return(
+                          <Slide
+                            direction={dirUp ? 'up' : 'down'}
+                            in={idx === currentPage && currentPage === queuedPage}
+                            timeout={transitionTime/2}
                             mountOnEnter
                             unmountOnExit
-                        >
+                          >   
                             <div className="home-container" style={{overflow: 'hidden'}}>
-                                <Expenses />
+                              <PageComponent />
                             </div>
-                        </Slide>
-                            {/*<Expenses />*/}
-
+                          </Slide>
+                        )
+                      })}
+                      </Stack>
+                      <Typography sx={{position: 'absolute', bottom: 10}} variant={'body1'} color={'error'}>
+                        Development Version {appVersion}
+                      </Typography>
                     </Container>
                 </Box>
             </Box>
+            </AppContext.Provider>
         </ThemeProvider>
     );
 }
 
 function DrawerItem(props){
     const [showText, setShowText] = useState(false)
+    const {currentPage, setCurrentPage, isMobile} = useContext(AppContext)
 
     return (
         <MenuItem
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
-            sx={{borderRadius: "5px"}}
+            sx={{
+                background: 'transparent',
+                '&$selected': { // <-- mixing the two classes
+                    backgroundColor: 'primary'
+                }
+            }}
             key={props.index}
+            onClick={() => props.callback(props.page.index)}
         >
-            {/*<ListItemIcon sx={{color: 'text.secondary'}}>*/}
             <ListItemIcon
                 sx={
-                    props.page.dispName !== 'Home' ?
+                    props.page.index !== currentPage ?
                         {color: 'icon.default'} :
                         {color: 'icon.active'}
                 }
             >
                 {props.page.icon}
             </ListItemIcon>
-            <Collapse in={showText} orientation={"horizontal"}>
+            <Collapse in={showText || isMobile} orientation={"horizontal"}>
                 <ListItemText>
                     <Typography variant={'body1'} color={'text.primary'}>
                         &nbsp;<b>{props.page.dispName}</b>
