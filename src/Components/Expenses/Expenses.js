@@ -9,9 +9,8 @@ export default function Expenses() {
         <Card
             sx={{
                 bgcolor: 'background.default',
-                height: '100%'
             }}
-            elevation={5}
+            elevation={0}
         >
             <CardContent>
                 <Box>

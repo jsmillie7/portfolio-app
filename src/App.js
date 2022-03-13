@@ -7,15 +7,18 @@ import {
     CssBaseline, Slide,
     ThemeProvider, Toolbar,
     Typography, Stack, useMediaQuery,
-    IconButton, Menu
+    IconButton, Menu, Fab, Grid
 } from "@mui/material";
 import MenuList from "@mui/material/MenuList";
 import {getPages} from "./pages";
-import React, {createContext, useContext, useEffect, useMemo, useState} from "react";
+import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Expenses from "./Components/Expenses/Expenses";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
@@ -23,16 +26,16 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 const themeLight = createTheme({
     palette: {
         background: {
-            default: "#FAF5EF",
-            light: "#D7D1C9"
+            default: "#EEEDED",
+            light: "#5C6E91"
         },
         text: {
-            primary: "#99B19C",
-            secondary: "#672F2F"
+            primary: "#DD9866",
+            secondary: "#8F384D"
         },
         icon: {
-            default: "#99B19C",
-            active: "#672F2F"
+            default: "#8F384D",
+            active: "#DD9866"
         }
     }
 });
@@ -59,7 +62,8 @@ const themeDark = createTheme({
           main: "#B55400"
         },
         secondary: {
-            main: "#393E46"
+            main: "#393E46",
+            light: "#CCFFCC"
         },
         background: {
             default: "#222831",
@@ -83,119 +87,43 @@ const themeDark = createTheme({
 export const AppContext = createContext();
 
 
-let appVersion = 'v0.3';
+let appVersion = 'v0.3.9';
 
 export default function App() {
     const pages = getPages();
     const [darkMode, setDarkMode] = useState(true);
-    const [collapseDir, setCollapseDir] = useState('up');
-    const [showSlide, setShowSlide] = useState(true);
     const [currentPage, setCurrentPage] = useState(0)
-    const [queuedPage, setQueuedPage] = useState(0)
-    const [dirUp, setDirUp] = useState(true)
     const isMobile = useMediaQuery('(max-width: 760px)')
-    const transitionTime = 200;
-
-    useEffect(() => {
-      console.debug('New Index =', currentPage)
-      if (currentPage < 0) {
-        setTimeout(() => {
-          console.debug('Transitioning in second page')
-          setCurrentPage(-1*currentPage)
-        }, transitionTime)
-      } else {
-        console.debug('Completed transition!')
-      }
-    }, [currentPage])
-
-    useEffect(() => {
-      console.debug('queued page changed to ', queuedPage, '. Current page transisioning out.')
-      setTimeout(() => {
-        console.debug('Set direction after transition completes')
-        setDirUp(!dirUp)
-      }, transitionTime)
-    }, [queuedPage])
-
-    useEffect(() => {
-      console.debug('Direction changed')
-      if (currentPage !== queuedPage) {
-        console.debug('Need to bring new page in')
-        setCurrentPage(queuedPage)
-      } else {
-        console.debug('Starting page transition')
-      }
-    }, [dirUp])
-
-
-    // Handle swipes:
-    // https://developer.chrome.com/docs/devtools/remote-debugging/
-    // Listen for touchstart, save initial coords, listen for touchmove
-    // Save final coords from touchmove? or from touchend?
-    // Calculate net angle, with tolerance determine up/down (eg. 60-120deg = up, 240-300deg = down)
-    // Listen for touchstart again.
-    // window.addEventListener("touchmove", handleScroll);
-    // window.removeEventListener("touchmove", handleScroll);
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         window.addEventListener("wheel", handleScroll);
-    //         console.log('pos', value)
-    //     }, 1000);
-    //
-    //     return () => {
-    //         clearTimeout(timer);
-    //         window.removeEventListener("wheel", handleScroll);
-    //     }
-    // }, [showSlide])
-    // window.addEventListener("touchmove", handleScroll);
-
-
-//    function handleScroll(e) {
-//        console.log('Got scroll event', e.deltaY)
-//        // if (e.deltaY > 0) {
-//        //     console.log('Go Down')
-//        //     if (currentPage < pages.length-1) {
-//        //         handleChange(currentPage+1)
-//        //     }
-//        // } else if (e.deltaY < 0) {
-//        //     console.log('Go Up')
-//        //     if (currentPage > 0) {
-//        //         handleChange(currentPage-1)
-//        //     }
-//        //
-//        // }
-//    }
 
     function handleChange(newPage) {
       if (currentPage === newPage) {
         console.debug('Already on this page, nothing to change.')
         return
       }
-      const delta = currentPage - newPage;
-      setDirUp(delta > 0)
+      const element = document.getElementById(pages[newPage].urlName)
       setTimeout(() => {
-        setQueuedPage(newPage)
-      }, 10)
-      // Adjust this timeout delay if the directions are not being set in time 
+        element.scrollIntoView({behavior: "smooth",})
+      }, 50)
     }
 
     const appVars = useMemo(() => ({
       pages, currentPage, setCurrentPage, handleChange, isMobile
   }), [currentPage, isMobile])
 
-
     function buildMenu() {
       return (
         pages.map((page, idx) => (
-          <DrawerItem page={page} index={idx} callback={handleChange}/>
+          <DrawerItem key={idx} page={page} index={idx} callback={handleChange}/>
       )))
     }
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
     const handleShowMobileMenu = (event) => {
       setAnchorEl(event.currentTarget);
     };
+
     const handleCloseMobileMenu = () => {
       setAnchorEl(null);
     };
@@ -222,6 +150,14 @@ export default function App() {
                     </Typography>
                     {isMobile ?  
                       <React.Fragment>
+                        {currentPage !== 0 && <IconButton
+                          onClick={() => handleChange(0)}
+                          size="small"
+                          sx={{ ml: 2 }}
+                          aria-controls={open ? 'home' : undefined}
+                        >
+                          <HomeTwoToneIcon sx={{color: 'text.primary' }}/>
+                        </IconButton>}
                         <IconButton
                           onClick={handleShowMobileMenu}
                           size="large"
@@ -259,7 +195,7 @@ export default function App() {
                                 display: 'block',
                                 position: 'absolute',
                                 top: 0,
-                                right: 14,
+                                right: 24,
                                 width: 10,
                                 height: 10,
                                 bgcolor: 'background.light',
@@ -288,43 +224,71 @@ export default function App() {
                     {buildMenu()}
                   </MenuList>
                 }
-                <Box height={'100%'}>
-                    <Container
-                        sx={{
-                            maxWidth: isMobile ? '100%' : '75%',
-                            height: "100%",
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            display: 'flex'
-                        }}
-                    >
-                      <Stack direction='column'>
-                      {pages.map((page, idx) => {
-                        const PageComponent=page.component
-                        return(
-                          <Slide
-                            direction={dirUp ? 'up' : 'down'}
-                            in={idx === currentPage && currentPage === queuedPage}
-                            timeout={transitionTime/2}
-                            mountOnEnter
-                            unmountOnExit
-                          >   
-                            <div className="home-container" style={{overflow: 'hidden'}}>
-                              <PageComponent />
-                            </div>
-                          </Slide>
-                        )
-                      })}
+                    <div style={{overflow: 'auto'}}>
+                      <Stack
+                        direction="column"
+                        justifyContent="flex-start"
+                        alignItems="stretch"
+                        spacing={0}
+                      >
+                      {pages.map((page, idx) => <ObservedContainer page={page} key={idx}/>)}
                       </Stack>
-                      <Typography sx={{position: 'absolute', bottom: 10}} variant={'body1'} color={'error'}>
-                        Development Version {appVersion}
-                      </Typography>
-                    </Container>
+                    </div>
+
+                    {/* Remove the following block before production */}
+                    <Typography 
+                      sx={{
+                        position: 'absolute', 
+                        bottom: 5, 
+                        left: 20, 
+                        textAlign: 'center'
+                      }} 
+                      variant={'body1'} 
+                      color={'error'}
+                    >
+                      Development Version {appVersion}
+                    </Typography>
+                    {/* End of Remove */}
+
                 </Box>
-            </Box>
             </AppContext.Provider>
         </ThemeProvider>
     );
+}
+
+function ObservedContainer(props) {
+  const {setCurrentPage} = useContext(AppContext)
+  const PageComponent=props.page.component
+  const pageRef = useRef()
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCurrentPage(props.page.index);
+        }
+      },
+      {
+        threshold: 0.5
+      }
+    );
+    if (pageRef.current) {
+      observer.observe(pageRef.current);
+    }
+    return () => {
+      observer.unobserve(pageRef.current);
+    };
+  }, [])
+
+  return(
+    <Container
+      id={props.page.urlName}
+      sx={{minHeight: '100vh', alignItems: 'center', justifyContent: 'center', display: 'flex'}}
+      ref={pageRef}
+    >
+      <PageComponent page={props.page}/>
+    </Container>
+  )
 }
 
 function DrawerItem(props){

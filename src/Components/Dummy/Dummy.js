@@ -1,16 +1,19 @@
 import {Box, Button, Card, CardActions, CardContent, Link, Typography} from "@mui/material";
+import { borderRadius } from "@mui/system";
 import {useContext} from "react";
 import {AppContext} from "../../App";
 
-export default function Dummy() {
-    const {pages, currentPage} = useContext(AppContext)
+export default function Dummy(props) {
+    const {pages, currentPage, handleChange} = useContext(AppContext)
     return (
         <Card
             sx={{
                 bgcolor: 'background.default',
-                height: '100%'
+                // height: '100%',
+                // width: '100vw',
+                borderRadius: 0
             }}
-            elevation={5}
+            elevation={0}
         >
             <CardContent>
                 <Box>
@@ -21,7 +24,7 @@ export default function Dummy() {
                             fontSize: 30
                         }}
                     >
-                        {pages[currentPage].dispName}
+                        {props.page.dispName}
                     </Typography>
                 </Box>
             </CardContent>
@@ -29,8 +32,9 @@ export default function Dummy() {
                 <Button
                     variant={'contained'}
                     color={'secondary'}
+                    onClick={() => handleChange(currentPage+1)}
                 >
-                    button
+                    next section
                 </Button>
             </CardActions>
         </Card>
