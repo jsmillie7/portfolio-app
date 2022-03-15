@@ -2,7 +2,7 @@ import {Box, Button, Card, CardActions, CardContent, Link, Typography} from "@mu
 import { useContext } from "react";
 import { AppContext } from "../../App";
 
-export default function Expenses() {
+export default function Home() {
     const {currentPage, handleChange} = useContext(AppContext)
 
     return (

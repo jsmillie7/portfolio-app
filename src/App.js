@@ -19,7 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import Expenses from "./Components/Expenses/Expenses";
+import Home from "./Components/Home/Home";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 

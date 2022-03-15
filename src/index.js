@@ -5,11 +5,6 @@ import {
     Route,
 } from "react-router-dom";
 import App from "./App";
-import Expenses from "./Components/Expenses/Expenses";
-import Invoices from "./Components/Invoices/Invoices";
-import Invoice from "./Components/Invoices/Invoice";
-import AppDrawer from "./Components/Drawer/Drawer";
-import Page from "./Components/Drawer/Page";
 
 
 const rootElement = document.getElementById("root");

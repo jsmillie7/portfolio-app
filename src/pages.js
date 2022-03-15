@@ -7,7 +7,7 @@ import ArchitectureOutlinedIcon from '@mui/icons-material/ArchitectureOutlined';
 import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
 import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import Expenses from "./Components/Expenses/Expenses";
+import Home from "./Components/Home/Home";
 import Dummy from "./Components/Dummy/Dummy";
 
 let pages = [
@@ -16,7 +16,7 @@ let pages = [
         urlName: "home",
         dispName: "Home",
         icon: <HomeOutlinedIcon color={"icon"} fontSize={"medium"}/>,
-        component: Expenses
+        component: Home
     },
     {
         index: 1,
