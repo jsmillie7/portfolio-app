@@ -87,7 +87,7 @@ const themeDark = createTheme({
 export const AppContext = createContext();
 
 
-let appVersion = 'v0.3.9';
+let appVersion = 'v0.3.11';
 
 export default function App() {
     const pages = getPages();
@@ -96,10 +96,6 @@ export default function App() {
     const isMobile = useMediaQuery('(max-width: 760px)')
 
     function handleChange(newPage) {
-      if (currentPage === newPage) {
-        console.debug('Already on this page, nothing to change.')
-        return
-      }
       const element = document.getElementById(pages[newPage].urlName)
       setTimeout(() => {
         element.scrollIntoView({behavior: "smooth",})
