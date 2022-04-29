@@ -9,6 +9,7 @@ import LinkRoundedIcon from '@mui/icons-material/LinkRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import Home from "./Components/Home/Home";
 import Dummy from "./Components/Dummy/Dummy";
+import Biography from './Components/Biography/Biography';
 
 let pages = [
     {
@@ -16,14 +17,14 @@ let pages = [
         urlName: "home",
         dispName: "Home",
         icon: <HomeOutlinedIcon color={"icon"} fontSize={"medium"}/>,
-        component: Home
+        component: Biography
     },
     {
         index: 1,
         urlName: "biography",
         dispName: "Biography",
         icon: <PersonOutlineRoundedIcon fontSize={"medium"}/>,
-        component: Dummy
+        component: Home
     },
     {
         index: 2,

@@ -40,21 +40,6 @@ const themeLight = createTheme({
     }
 });
 
-// // Original
-// const themeLight = createTheme({
-//     palette: {
-//         background: {
-//             default: "#e4f0e2",
-//         },
-//         text: {
-//             primary: "#000000",
-//             // secondary: "#00FF00"
-//         },
-//         icon: {
-//             default: "#0000FF"
-//         }
-//     }
-// });
 
 const themeDark = createTheme({
     palette: {
@@ -216,7 +201,7 @@ export default function App() {
                   </Toolbar>
                 </AppBar>
                 {!isMobile && 
-                  <MenuList sx={{position: 'absolute', top: "15%"}}>
+                  <MenuList sx={{position: 'absolute', top: "15%", zIndex: 1500}}>
                     {buildMenu()}
                   </MenuList>
                 }
@@ -231,7 +216,7 @@ export default function App() {
                       </Stack>
                     </div>
 
-                    {/* Remove the following block before production */}
+                    {/* TODO: Remove the following block before production */}
                     <Typography 
                       sx={{
                         position: 'absolute', 
