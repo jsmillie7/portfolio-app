@@ -34,9 +34,10 @@ export default function Home() {
                             fontWeight: 'light'
                     }}
                     >
-                        Python connoisseur and full-stack developer who is interested in creating clean, intuitive,
-                        and user-friendly experiences.
-                        I currently support development and testing to several concurrent projects
+                        Python connoisseur and software developer with experience in many languages and applications.
+                        I have a passion for creating clean, intuitive,
+                        and user-friendly experiences with an attention to detail.
+                        I currently support development and testing on several concurrent projects
                         at <b><Link href={'https://txcorp.com'} target="_blank" rel="noopener" underline="hover">
                         Tech-X Corporation</Link></b>.
                     </Typography>

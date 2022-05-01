@@ -7,7 +7,7 @@ import {
     CssBaseline, Slide,
     ThemeProvider, Toolbar,
     Typography, Stack, useMediaQuery,
-    IconButton, Menu, Fab, Grid
+    IconButton, Menu, Fab, Grid, Tooltip
 } from "@mui/material";
 import MenuList from "@mui/material/MenuList";
 import {getPages} from "./pages";
@@ -21,7 +21,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Home from "./Components/Home/Home";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 const themeLight = createTheme({
     palette: {
@@ -31,11 +31,13 @@ const themeLight = createTheme({
         },
         text: {
             primary: "#DD9866",
-            secondary: "#8F384D"
+            secondary: "#8F384D",
+            
         },
         icon: {
             default: "#8F384D",
-            active: "#DD9866"
+            active: "#DD9866",
+            dark:  "#9B6A47"
         }
     }
 });
@@ -72,7 +74,7 @@ const themeDark = createTheme({
 export const AppContext = createContext();
 
 
-let appVersion = 'v0.3.11';
+let appVersion = 'v0.3.14';
 
 export default function App() {
     const pages = getPages();
@@ -112,7 +114,8 @@ export default function App() {
     return (
         <ThemeProvider theme={darkMode ? themeDark: themeLight}>
             <AppContext.Provider value={appVars}>
-            <Box overflow={'hidden'} height="100vh" display="flex" flexDirection="column">
+            {/* <Box overflow={'hidden'} height="100vh" display="flex" flexDirection="column"> */}
+            <Box overflowX={'hidden'} overflowY={'auto'} height="100vh" display="flex" flexDirection="column">
                 <CssBaseline />
                 <AppBar position="absolute" sx={{bgcolor: "background.default"}} elevation={4}>
                   <Toolbar>
@@ -192,12 +195,28 @@ export default function App() {
                         </Menu>
                       </React.Fragment>
                     : 
-                      <Button
+                    <Tooltip title={'LinkedIn'} arrow>
+                      <IconButton sx={{
+                        color: "background.light",
+                        "&:hover": {
+                          color:  "icon.default"
+                        }
+                        }}
+                        size={'large'}
+                        href="https://www.linkedin.com/in/james-s-a03574124" 
+                        target="_blank"
+                      >
+                        <LinkedInIcon fontSize={"large"}/>
+                      </IconButton>
+                    </Tooltip>
+                    }
+                      {/* <Button
                         variant={'contained'}
                         color={'primary'}
+                        hidden={true}
                       >
                         Résumé
-                    </Button>}
+                    </Button>} */}
                   </Toolbar>
                 </AppBar>
                 {!isMobile && 
@@ -205,12 +224,13 @@ export default function App() {
                     {buildMenu()}
                   </MenuList>
                 }
-                    <div style={{overflow: 'auto'}}>
+                    <div style={{overflow: 'auto', width: '100vw'}}>
                       <Stack
                         direction="column"
                         justifyContent="flex-start"
                         alignItems="stretch"
                         spacing={0}
+                        width={'100%'}
                       >
                       {pages.map((page, idx) => <ObservedContainer page={page} key={idx}/>)}
                       </Stack>
@@ -262,13 +282,19 @@ function ObservedContainer(props) {
   }, [])
 
   return(
-    <Container
+    <Box
       id={props.page.urlName}
-      sx={{minHeight: '100vh', alignItems: 'center', justifyContent: 'center', display: 'flex'}}
+      sx={{
+        minHeight: '100vh', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        display: 'flex'
+      }}
       ref={pageRef}
+      maxWidth={'100vw'}
     >
       <PageComponent page={props.page}/>
-    </Container>
+    </Box>
   )
 }
 
@@ -282,7 +308,7 @@ function DrawerItem(props){
             onMouseLeave={() => setShowText(false)}
             sx={{
                 background: 'transparent',
-                '&$selected': { // <-- mixing the two classes
+                '&$selected': {
                     backgroundColor: 'primary'
                 }
             }}
