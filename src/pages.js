@@ -17,14 +17,14 @@ let pages = [
         urlName: "home",
         dispName: "Home",
         icon: <HomeOutlinedIcon color={"icon"} fontSize={"medium"}/>,
-        component: Biography
+        component: Home
     },
     {
         index: 1,
         urlName: "biography",
         dispName: "Biography",
         icon: <PersonOutlineRoundedIcon fontSize={"medium"}/>,
-        component: Home
+        component: Biography
     },
     {
         index: 2,

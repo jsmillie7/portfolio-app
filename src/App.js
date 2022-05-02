@@ -22,6 +22,7 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 import Home from "./Components/Home/Home";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import {isMobile} from 'react-device-detect';
 
 const themeLight = createTheme({
     palette: {
@@ -74,13 +75,13 @@ const themeDark = createTheme({
 export const AppContext = createContext();
 
 
-let appVersion = 'v0.3.14';
+let appVersion = 'v0.3.15';
 
 export default function App() {
     const pages = getPages();
     const [darkMode, setDarkMode] = useState(true);
     const [currentPage, setCurrentPage] = useState(0)
-    const isMobile = useMediaQuery('(max-width: 760px)')
+    // const isMobile = useMediaQuery('(max-width: 760px)')
 
     function handleChange(newPage) {
       const element = document.getElementById(pages[newPage].urlName)
@@ -117,20 +118,46 @@ export default function App() {
             {/* <Box overflow={'hidden'} height="100vh" display="flex" flexDirection="column"> */}
             <Box overflowX={'hidden'} overflowY={'auto'} height="100vh" display="flex" flexDirection="column">
                 <CssBaseline />
-                <AppBar position="absolute" sx={{bgcolor: "background.default"}} elevation={4}>
+                <AppBar position="absolute" sx={{bgcolor: "background.default", opacity: "95%",}} elevation={4}>
                   <Toolbar>
-                    <Typography
+                  <Typography
                       color={'text.primary'}
                       variant={'h5'}
                       component="div"
                       sx={{
                         fontFamily: 'monospace',
-                        flexGrow: 1,
-                        fontWeight: 550,
+                        // flexGrow: 1,
+                        fontWeight: 450,
                         userSelect: 'none'
                       }}
                     >
-                      js_{pages[currentPage].dispName.toLowerCase()}
+                      js
+                    </Typography>
+                    <Typography
+                      color={'background.light'}
+                      variant={'h5'}
+                      component="div"
+                      sx={{
+                        fontFamily: 'monospace',
+                        // flexGrow: 1,
+                        fontWeight: 450,
+                        userSelect: 'none'
+                      }}
+                    >
+                      &nbsp;|&nbsp;
+                    </Typography>
+                    <Typography
+                      color={'icon.default'}
+                      variant={'h5'}
+                      component="div"
+                      sx={{
+                        fontFamily: 'monospace',
+                        flexGrow: 1,
+                        fontWeight: 450,
+                        userSelect: 'none'
+                      }}
+                    >
+                      {pages[currentPage].dispName.toLowerCase()}
                     </Typography>
                     {isMobile ?  
                       <React.Fragment>
