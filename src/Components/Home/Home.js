@@ -15,7 +15,7 @@ function debounce(fn, ms) {
     };      
   }
 
-export default function Biography() {
+export default function Home() {
     const [cursor, setCursor] = useState({x:0, y:0})
     const [winSize, setWinSize] = useState({x: window.innerWidth, y: window.innerHeight})
     const [offset, setOffset] = useState({x: window.innerWidth/2, y: 0})
@@ -86,7 +86,7 @@ export default function Biography() {
                             lg: '10vw',
                             md: '11vw',
                             sm: '12vw',
-                            xs: '20vw'
+                            xs: '14vw'
                         },
                     }} 
                     fontWeight={'strong'}
@@ -109,7 +109,7 @@ export default function Biography() {
                             lg: '10.1vw',
                             md: '11.1vw',
                             sm: '12.2vw',
-                            xs: '20.3vw'
+                            xs: '14.3vw'
                         },
                         opacity: '60%'
                     }} 

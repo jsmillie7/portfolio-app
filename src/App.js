@@ -24,6 +24,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import {isMobile} from 'react-device-detect';
 
+
 const themeLight = createTheme({
     palette: {
         background: {
@@ -334,9 +335,9 @@ function DrawerItem(props){
             onMouseEnter={() => setShowText(true)}
             onMouseLeave={() => setShowText(false)}
             sx={{
-                background: 'transparent',
-                '&$selected': {
-                    backgroundColor: 'primary'
+                background: 'transparent', // transparent
+                '&:hover': {
+                  background: '#222831'
                 }
             }}
             key={props.index}
