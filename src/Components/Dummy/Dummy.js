@@ -1,10 +1,9 @@
-import {Box, Button, Card, CardActions, CardContent, Link, Typography} from "@mui/material";
-import { borderRadius } from "@mui/system";
+import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useContext} from "react";
 import {AppContext} from "../../App";
 
 export default function Dummy(props) {
-    const {pages, currentPage, handleChange} = useContext(AppContext)
+    const {currentPage, handleChange} = useContext(AppContext)
     return (
         <Card
             sx={{
