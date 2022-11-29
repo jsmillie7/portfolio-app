@@ -1,10 +1,11 @@
-import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {Box, Button, Card, CardActions, CardContent, Container, Typography} from "@mui/material";
 import {useContext} from "react";
 import {AppContext} from "../../App";
 
 export default function Dummy(props) {
     const {currentPage, handleChange} = useContext(AppContext)
     return (
+        <Container maxWidth="sm">
         <Card
             sx={{
                 bgcolor: 'background.default',
@@ -45,5 +46,6 @@ export default function Dummy(props) {
                 </Button>
             </CardActions>
         </Card>
+        </Container>
     );
 }

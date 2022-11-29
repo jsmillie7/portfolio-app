@@ -1,10 +1,16 @@
-import {Box, Card, CardContent, Container, Grid, Stack, Typography} from "@mui/material";
+import {Box, Card, CardContent, Container, Grid, Icon, Stack, SvgIcon, Typography} from "@mui/material";
 import { BrowserView, MobileView, isMobile } from 'react-device-detect';
 import bioImg from './assets/bio.jpg'
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import pythonLogo from './assets/python2.svg'
+import reactLogo from './assets/react.svg'
+import nodeLogo from './assets/node.svg'
+import buffsLogo from './assets/buffs.svg'
 import Skill from './Skill'
+import { useEffect, useState } from "react";
 
 export default function Biography() {
-
+    
     function aboutMe () {
         return (
             <Typography
@@ -20,6 +26,41 @@ export default function Biography() {
             </Typography>
         )
     }
+
+    const iconSize = 40
+
+    const skills = [
+        {
+            title: 'Bachelor of Arts, Physics',
+            subtitle: <div>University of Colorado <br/>Boulder, CO</div>,
+            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
+                    <img src={buffsLogo} height={iconSize} width={iconSize}/>
+                  </Icon>
+            // icon: <SchoolOutlinedIcon sx={{width: '40px', height: '40px', color: "icon.default"}} />
+        },
+        {
+            title: 'Python',
+            subtitle: 'Product testing, GUIs, back-end web frameworks & task automation.',
+            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
+                    <img src={pythonLogo} height={iconSize} width={iconSize}/>
+                  </Icon>
+        },
+        {
+            title: 'React',
+            // subtitle: 'Web applications for accessing cloud products, accepting test results and this portfolio',
+            subtitle: 'Web application front-end user interface development.',
+            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
+                    <img src={reactLogo} height={iconSize} width={iconSize}/>
+                  </Icon>
+        },
+        // {
+        //     title: 'Node.js',
+        //     subtitle: 'Full-stack JavaScript development',
+        //     icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
+        //             <img src={nodeLogo} height={iconSize} width={iconSize}/>
+        //           </Icon>
+        // }
+    ]
 
     return (
             <Box
@@ -104,6 +145,7 @@ export default function Biography() {
                     justifyContent: 'stretch',
                     // display: 'flex',
                     marginY: '30px',
+                    flex: 1
                     // border: 'solid white 2px',
                 }}
             >
@@ -114,15 +156,13 @@ export default function Biography() {
                         alignItems="center"
                         spacing={3}
                     >
-                        <Grid item xs={'auto'}>
-                            <Skill />
-                        </Grid>
-                        <Grid item xs={'auto'}>
-                            <Skill />
-                        </Grid>
-                        <Grid item xs={'auto'}>
-                            <Skill />
-                        </Grid>
+                        {skills.map((skill, index) => {
+                            return (
+                                <Grid item xs={'auto'} key={index}>
+                                    <Skill skill={skill} />
+                                </Grid>
+                            )
+                        })}
                     </Grid>
             </Container>
             

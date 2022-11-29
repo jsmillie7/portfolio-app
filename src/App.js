@@ -76,13 +76,12 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.4.2';
+let appVersion = 'v0.4.5';
 
 export default function App() {
     const pages = getPages();
     const [darkMode, setDarkMode] = useState(true);
     const [currentPage, setCurrentPage] = useState(0)
-    // const isMobile = useMediaQuery('(max-width: 760px)')
     const allPages = useRef(null)
     allPages.current = []
 
@@ -267,33 +266,6 @@ export default function App() {
                     {/* End of Remove */}
 
                 </Box>
-                {/* <Fade in={currentPage === 0}>
-                  <Fab 
-                      sx={{
-                          position:'sticky', 
-                          bottom: '2%', 
-                          left: '50%',
-                          transform: 'translateX(-50%) translateY(0%)',
-                          opacity: '80%',
-                          bgcolor: 'transparent',
-                          boxShadow: 'none',
-                          color: 'text.primary',
-                          "&:hover": {
-                              bgcolor: 'transparent',
-                              color: 'text.secondary'
-                          }
-                      }}
-                      onClick={() => handleChange(1)}
-                  >
-                          <KeyboardDoubleArrowDownIcon 
-                              sx={{
-                                  width: '30px',
-                                  height: '30px',
-
-                              }}
-                          />
-                  </Fab>
-                </Fade> */}
             </AppContext.Provider>
         </ThemeProvider>
     );

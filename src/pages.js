@@ -5,6 +5,7 @@ import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import ArchitectureOutlinedIcon from '@mui/icons-material/ArchitectureOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import Home from "./Components/Home/Home";
+import Contact from "./Components/Contact/Contact"
 import Dummy from "./Components/Dummy/Dummy";
 import Biography from './Components/Biography/Biography';
 
@@ -49,7 +50,7 @@ let pages = [
         urlName: "contact",
         dispName: "Contact",
         icon: <EmailOutlinedIcon fontSize={"medium"}/>,
-        component: Dummy
+        component: Contact
     }
 ]
 

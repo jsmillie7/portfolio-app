@@ -24,6 +24,16 @@ export default function Home() {
     const [cursor, setCursor] = useState({x:0, y:0})
     const [winSize, setWinSize] = useState({x: window.innerWidth, y: window.innerHeight})
     const [offset, setOffset] = useState({x: window.innerWidth/2, y: 0})
+    const [showArrow, setShowArrow] = useState(true);
+
+    useEffect(() => {
+        const onScroll = e => {
+            setShowArrow(e.target.documentElement.scrollTop <= 50)
+        };
+        window.addEventListener("scroll", onScroll);
+    
+        return () => window.removeEventListener("scroll", onScroll);
+      }, [showArrow]);
 
     useEffect(() => {
         const debouncedHandleResize = debounce(function handleResize() {
@@ -146,11 +156,11 @@ export default function Home() {
                 >
                     python / node.js / react / full stack
                 </Typography>
-                <Fade in={currentPage === 0}>
+                <Fade in={showArrow}>
                   <Fab
                       sx={{
                           position:'fixed', 
-                          bottom: isMobile ? '4%' : '2%', 
+                          bottom: isMobile ? '4%' : '4%', 
                           left: '50%',
                           transform: 'translateX(-50%) translateY(0%)',
                           opacity: '80%',
