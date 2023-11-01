@@ -27,39 +27,29 @@ export default function Biography() {
         )
     }
 
-    const iconSize = 40
+    const iconSize = 80
 
     const skills = [
         {
             title: 'Bachelor of Arts, Physics',
             subtitle: <div>University of Colorado <br/>Boulder, CO</div>,
-            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
-                    <img src={buffsLogo} height={iconSize} width={iconSize}/>
-                  </Icon>
-            // icon: <SchoolOutlinedIcon sx={{width: '40px', height: '40px', color: "icon.default"}} />
+            icon: buffsLogo
         },
         {
             title: 'Python',
-            subtitle: 'Product testing, GUIs, back-end web frameworks & task automation.',
-            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
-                    <img src={pythonLogo} height={iconSize} width={iconSize}/>
-                  </Icon>
+            subtitle: 'Package development, product testing, UX/UI, web frameworks & task automation.',
+            icon: pythonLogo
         },
         {
             title: 'React',
-            // subtitle: 'Web applications for accessing cloud products, accepting test results and this portfolio',
             subtitle: 'Web application front-end user interface development.',
-            icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
-                    <img src={reactLogo} height={iconSize} width={iconSize}/>
-                  </Icon>
+            icon: reactLogo
         },
-        // {
-        //     title: 'Node.js',
-        //     subtitle: 'Full-stack JavaScript development',
-        //     icon: <Icon sx={{display: 'flex', width: iconSize, height: iconSize}}>
-        //             <img src={nodeLogo} height={iconSize} width={iconSize}/>
-        //           </Icon>
-        // }
+        {
+            title: 'Node.js',
+            subtitle: 'Full-stack JavaScript development',
+            icon: nodeLogo
+        }
     ]
 
     return (
