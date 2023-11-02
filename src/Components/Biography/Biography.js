@@ -6,6 +6,7 @@ import pythonLogo from './assets/python2.svg'
 import reactLogo from './assets/react.svg'
 import nodeLogo from './assets/node.svg'
 import buffsLogo from './assets/buffs.svg'
+import awsLogo from './assets/aws.svg'
 import Skill from './Skill'
 import { useEffect, useState } from "react";
 
@@ -21,8 +22,9 @@ export default function Biography() {
                     opacity: '100%'
                 }}
             >
-                Python connoisseur, software and web developer with a passion for creating clean, intuitive,
-                and efficient software solutions using object-oriented code. I enjoy creating user-friendly experiences with an attention to detail.
+                Python connoisseur with a diverse skillset and a passion for creating clean, intuitive,
+                and efficient software solutions using object-oriented code. I enjoy creating user-friendly 
+                experiences with an attention to detail.
             </Typography>
         )
     }
@@ -47,8 +49,13 @@ export default function Biography() {
         },
         {
             title: 'Node.js',
-            subtitle: 'Full-stack JavaScript development',
+            subtitle: 'Full-stack JavaScript development, scripting and deployment',
             icon: nodeLogo
+        },
+        {
+            title: 'AWS',
+            subtitle: 'Deploy solutions using services such as CloudFormation, EC2, Lambda and Cognito',
+            icon: awsLogo
         }
     ]
 
