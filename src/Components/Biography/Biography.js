@@ -7,6 +7,7 @@ import reactLogo from './assets/react.svg'
 import nodeLogo from './assets/node.svg'
 import buffsLogo from './assets/buffs.svg'
 import awsLogo from './assets/aws.svg'
+import electronLogo from './assets/electron.svg'
 import Skill from './Skill'
 import { useEffect, useState } from "react";
 
@@ -43,20 +44,25 @@ export default function Biography() {
             icon: pythonLogo
         },
         {
-            title: 'React',
-            subtitle: 'Web application front-end user interface development.',
-            icon: reactLogo
-        },
-        {
             title: 'Node.js',
             subtitle: 'Full-stack JavaScript development, scripting and deployment',
             icon: nodeLogo
         },
         {
+            title: 'React.js',
+            subtitle: 'Web application front-end user interface development.',
+            icon: reactLogo
+        },
+        {
             title: 'AWS',
-            subtitle: 'Deploy solutions using services such as CloudFormation, EC2, Lambda and Cognito',
+            subtitle: 'Deploy solutions using services like CloudFormation, EC2, Lambda and Cognito',
             icon: awsLogo
-        }
+        },
+        {
+            title: 'Electron.js',
+            subtitle: 'Develop, build and deliver  cross-platform JavaScript-based desktop applications',
+            icon: electronLogo
+        },
     ]
 
     return (

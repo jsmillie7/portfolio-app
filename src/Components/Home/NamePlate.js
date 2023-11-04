@@ -46,11 +46,6 @@ export default function NamePlate({ name }) {
         >
             <Typography
                 sx={{
-                    // position: 'absolute',
-                    // top: "30%",
-                    // left: "50%",
-                    // transform: 'translateX(-50%) translateY(0%)',
-                    // transform: 'translateX(50%)',
                     zIndex: 3,
                     color: 'text.secondary',
                     userSelect: 'none',
@@ -64,7 +59,8 @@ export default function NamePlate({ name }) {
                         sm: '12vw',
                         xs: '14vw'
                     },
-                    textShadow: `${-20*offset.x}px ${-20*offset.y}px 10px rgba(0,0,0,0.5)`,
+                    // textShadow: `${-20*offset.x}px ${-20*offset.y}px 10px rgba(0,0,0,0.5)`,
+                    textShadow: `${-10*offset.x}px 0px 10px rgba(0,0,0,0.5)`,
                     marginBottom: '100px'
                 }}
                 fontWeight={'normal'}

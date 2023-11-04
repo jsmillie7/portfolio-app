@@ -1,6 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
 import {
-  AppBar,
   Box, Button,
   Collapse, Container,
   createTheme,
@@ -22,8 +21,9 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Home from "./Components/Home/Home";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import { isMobile } from 'react-device-detect';
+import PortfolioAppBar from "./Components/PortfolioAppBar/PortfolioAppBar";
 
 
 const themeLight = createTheme({
@@ -76,7 +76,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.4.5';
+let appVersion = 'v0.5.1';
 
 export default function App() {
   const pages = getPages();
@@ -125,128 +125,10 @@ export default function App() {
       <AppContext.Provider value={appVars}>
         <Box sx={{ height: '100vh' }}>
           <CssBaseline />
-          <Fade in={currentPage !== 0}>
-            <AppBar position="fixed" sx={{ bgcolor: "background.default", opacity: "95%", }} elevation={4}>
-              <Toolbar variant="dense" position="sticky">
-                <Typography
-                  color={'text.primary'}
-                  variant={'h5'}
-                  component="div"
-                  sx={{
-                    fontFamily: 'monospace',
-                    fontWeight: 450,
-                    userSelect: 'none'
-                  }}
-                  onClick={() => handleChange(0)}
-                >
-                  js
-                </Typography>
-                <Typography
-                  color={'background.light'}
-                  variant={'h5'}
-                  component="div"
-                  sx={{
-                    fontFamily: 'monospace',
-                    fontWeight: 450,
-                    userSelect: 'none'
-                  }}
-                >
-                  &nbsp;|&nbsp;
-                </Typography>
-                <Typography
-                  color={'icon.default'}
-                  variant={'h5'}
-                  component="div"
-                  sx={{
-                    fontFamily: 'monospace',
-                    flexGrow: 1,
-                    fontWeight: 450,
-                    userSelect: 'none'
-                  }}
-                >
-                  {pages[currentPage].dispName.toLowerCase()}
-                </Typography>
-                {isMobile ?
-                  <React.Fragment>
-                    <IconButton
-                      onClick={handleShowMobileMenu}
-                      size="large"
-                      sx={{ ml: 2 }}
-                      aria-controls={open ? 'account-menu' : undefined}
-                      aria-haspopup="true"
-                      aria-expanded={open ? 'true' : undefined}
-                      color={'primary'}
-                    >
-                      <MenuRoundedIcon sx={{ width: 32, height: 32 }} />
-                    </IconButton>
-                    <Menu
-                      anchorEl={anchorEl}
-                      id="account-menu"
-                      open={open}
-                      onClose={handleCloseMobileMenu}
-                      onClick={handleCloseMobileMenu}
-                      color={'background.light'}
-                      PaperProps={{
-                        elevation: 0,
-                        sx: {
-                          overflow: 'visible',
-                          filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                          mt: 1.5,
-                          bgcolor: 'background.light',
-                          '& .MuiAvatar-root': {
-                            width: 32,
-                            height: 32,
-                            ml: -0.5,
-                            mr: 1,
-                            bgcolor: 'background.light',
-                          },
-                          '&:before': {
-                            content: '""',
-                            display: 'block',
-                            position: 'absolute',
-                            top: 0,
-                            right: 24,
-                            width: 10,
-                            height: 10,
-                            bgcolor: 'background.light',
-                            transform: 'translateY(-50%) rotate(45deg)',
-                            zIndex: 0,
-                          },
-                        },
-                      }}
-                      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                    >
-                      {buildMenu()}
-                    </Menu>
-                  </React.Fragment>
-                  :
-                  <Tooltip title={'LinkedIn'} arrow>
-                    <IconButton
-                      sx={{
-                        color: "background.light",
-                        "&:hover": {
-                          color: "icon.default"
-                        }
-                      }}
-                      size={'large'}
-                      href="https://www.linkedin.com/in/james-s-a03574124"
-                      target="_blank"
-                    >
-                      <LinkedInIcon fontSize={"large"} />
-                    </IconButton>
-                  </Tooltip>
-                }
-              </Toolbar>
-            </AppBar>
-          </Fade>
-          {/* <Toolbar /> */}
-          {!isMobile &&
-            <MenuList sx={{ position: 'fixed', top: "15%", zIndex: 1500 }}>
-              {buildMenu()}
-            </MenuList>
-          }
+
+
           <Box sx={{ overflowX: 'hidden', overflowY: 'auto', width: '100vw', display: 'flex', flexDirection: "column" }}>
+            <PortfolioAppBar />
             <Stack
               direction="column"
               justifyContent="flex-start"
