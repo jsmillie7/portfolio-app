@@ -35,7 +35,7 @@ export default function Biography() {
     const skills = [
         {
             title: 'Bachelor of Arts, Physics',
-            subtitle: <div>University of Colorado <br/>Boulder, CO</div>,
+            subtitle: <>University of Colorado <br/>Boulder, CO</>,
             icon: buffsLogo
         },
         {
@@ -146,10 +146,8 @@ export default function Biography() {
                 sx={{
                     alignItems: 'center',
                     justifyContent: 'stretch',
-                    // display: 'flex',
                     marginY: '30px',
                     flex: 1
-                    // border: 'solid white 2px',
                 }}
             >
                     <Grid

@@ -76,7 +76,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.5.1';
+let appVersion = 'v0.5.2';
 
 export default function App() {
   const pages = getPages();

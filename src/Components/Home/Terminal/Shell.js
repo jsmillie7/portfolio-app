@@ -59,7 +59,7 @@ export function JShell({ commands, delay }) {
                 await write2Stdin(cmd);
             }
         })();
-    }, [commands])
+    }, [])
 
     /**
      * Run the stdin value in the jTerm backend
@@ -90,7 +90,7 @@ export function JShell({ commands, delay }) {
 
     return (
         <Box
-            width={isMobile ? '80%' : '60%'}
+            width={isMobile ? '90%' : '60%'}
             height={'40vh'}
         >
             <Paper
@@ -151,7 +151,7 @@ export function JShell({ commands, delay }) {
                                 type={'text'}
                                 inputMode={'text'}
                                 autoCapitalize={'none'}
-                                autoFocus={'true'}
+                                autoFocus={true}
                                 value={stdin}
                                 onChange={e => setStdin(e.target.value)}
                                 style={{
