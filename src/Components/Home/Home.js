@@ -11,7 +11,7 @@ import { AppContext } from "../../App";
 import NamePlate from "./NamePlate";
 import Hero from "../shared/hero";
 import TitlePlate from "./TitlePlate";
-import Terminal, { Shell, TerminalIO } from "./Terminal/Terminal";
+import Terminal, { JShell, TerminalIO } from "./Terminal/Shell";
 
 /**
  * The first panel (tile) in the web app.
@@ -24,24 +24,18 @@ export default function Home() {
 
     const name = "James Smillie"
 
-    
+    const commands = [
+        'whoami',
+        'cat welcome.txt'
+    ]
+
     return (
         <Hero backgroundImage={topoImg} scale={2}>
             <NamePlate name={name} />
-            <Shell />
-            {/* <Terminal
-                delayStart={500}
-            >
-                <TerminalIO 
-                    stdin={'whoami'} 
-                    // stdout={'A Colorado-based full-stack developer'}
-                />
-                <TerminalIO 
-                    stdin={'cat welcome.txt'} 
-                    // stdout={'Thanks for checking out my portfolio.'}
-                />
-                <TerminalIO />
-            </Terminal> */}
+            <JShell
+                commands={commands}
+                delay={500}
+            />
         </Hero>
     )
 }
