@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   Box, Button,
   Collapse, Container,
@@ -19,11 +19,13 @@ import ListItemText from "@mui/material/ListItemText";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import Home from "./Components/Home/Home";
+import TopPanel from "./Components/TopPanel/TopPanel";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import { isMobile } from 'react-device-detect';
 import PortfolioAppBar from "./Components/PortfolioAppBar/PortfolioAppBar";
+import Home from "./Components/Home/Home";
+import Projects from "./Components/Projects/Projects";
 
 
 const themeLight = createTheme({
@@ -76,15 +78,16 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.5.2';
+let appVersion = 'v0.5.3';
 
 export default function App() {
-  const pages = getPages();
   const [darkMode, setDarkMode] = useState(true);
   const [currentPage, setCurrentPage] = useState(0)
   const [showAppBar, setShowAppBar] = useState(false);
+  const pages = getPages()
   const allPages = useRef(null)
   allPages.current = []
+ 
 
   useEffect(() => {
     console.log(currentPage)
@@ -128,16 +131,17 @@ export default function App() {
 
 
           <Box sx={{ overflowX: 'hidden', overflowY: 'auto', width: '100vw', display: 'flex', flexDirection: "column" }}>
-            <PortfolioAppBar />
-            <Stack
-              direction="column"
-              justifyContent="flex-start"
-              alignItems="stretch"
-              spacing={0}
-              width={'100%'}
-            >
-              {pages.map((page, idx) => <ObservedContainer page={page} key={idx} />)}
-            </Stack>
+
+            <BrowserRouter>
+              <PortfolioAppBar />
+              <HandleScroll />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="projects" element={<Projects />} />
+                {/* </Route> */}
+              </Routes>
+            </BrowserRouter>
+
           </Box>
 
           {/* TODO: Remove the following block before production */}
@@ -161,69 +165,20 @@ export default function App() {
   );
 }
 
-function ObservedContainer(props) {
-  const { allPages, setCurrentPage, currentPage } = useContext(AppContext)
-  const PageComponent = props.page.component
-  const pageRef = useRef()
-  const [inView, setInView] = useState(false)
-  const visible = useRef(null)
-  visible.current = false
-  const isTop = useRef(null)
-  isTop.current = false
+/**
+ * When the URL changes, 
+ * @returns 
+ */
+function HandleScroll() {
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting !== visible.current) {
-          if (entry.isIntersecting) {
-            console.log(props.page.dispName, ' entered screen')
-            allPages.current.push(props.page.index)
-            let topPage = Math.min(...allPages.current)
-            if (topPage === 0) {
-              setCurrentPage(topPage)
-            }
-          } else {
-            console.log(props.page.dispName, ' exited screen')
-            allPages.current = allPages.current.filter(e => e !== props.page.index);
-            console.log('All Pages = ', JSON.stringify(allPages.current))
-            let topPage = Math.min(...allPages.current)
-            if (topPage !== Infinity) {
-              setCurrentPage(topPage)
-            }
-          }
-          visible.current = entry.isIntersecting
-        }
-      },
-      {
-        threshold: 0.2
-      }
-    );
-    if (pageRef.current) {
-      observer.observe(pageRef.current);
-    }
-    return () => {
-      observer.unobserve(pageRef.current);
-    };
-  })
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  return (
-    <Box
-      // id={props.page.urlName} 
-      sx={{
-        alignItems: 'stretch',
-        justifyContent: 'center',
-        display: 'flex',
-        position: 'relative',
-        flexDirection: 'column'
-      }}
-      ref={pageRef}
-      maxWidth={'100vw'}
-    >
-      <div style={{ position: 'absolute', top: props.page.index === 0 ? '0px' : '-60px' }} id={props.page.urlName} />
-      <PageComponent page={props.page} />
-    </Box>
-  )
+  return null
 }
+
 
 function DrawerItem(props) {
   const [showText, setShowText] = useState(false)

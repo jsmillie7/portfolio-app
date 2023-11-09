@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { debounce } from "./Home";
+import { debounce } from "./TopPanel";
 
 
 export default function NamePlate({ name }) {

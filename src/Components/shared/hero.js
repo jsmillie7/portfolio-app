@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../App";
 
 
@@ -43,6 +43,8 @@ export default function Hero({ backgroundImage, scale,children }) {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    
 
     return (
         <Box

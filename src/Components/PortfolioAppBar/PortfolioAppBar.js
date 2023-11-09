@@ -1,16 +1,18 @@
 import { AppBar, Button, Fade, IconButton, Toolbar, Tooltip, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useNavigate } from "react-router-dom";
 
 
 export default function PortfolioAppBar() {
     const [showAppBar, setShowAppBar] = useState(false)
     const theme = useTheme();
+    const navigate = useNavigate()
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollPct = window.scrollY / window.innerHeight
-            setShowAppBar(scrollPct > 0.03)
+            setShowAppBar(scrollPct > 0.1)
         };
 
         window.addEventListener("scroll", handleScroll);
@@ -20,15 +22,22 @@ export default function PortfolioAppBar() {
         };
     }, []);
 
+    function handleNavagate(nav) {
+        navigate(nav)
+        // window.history.pushState(nav)
+
+        // window.location.href = nav
+    }
+
     return (
-        <Fade in={showAppBar}>
+        // <Fade in={showAppBar}>
             <AppBar
                 position="fixed"
                 sx={{
-                    bgcolor: "background.default",
+                    bgcolor: showAppBar ? "background.default" : 'transparent',
                     opacity: "95%",
                 }}
-                elevation={4}
+                elevation={showAppBar ? 4 : 0}
             >
                 <Toolbar
                     variant="dense"
@@ -81,6 +90,7 @@ export default function PortfolioAppBar() {
                             }
                         }}
                         size={'small'}
+                        onClick={() => handleNavagate('/')}
                     >
                         Home
                     </Button>
@@ -93,6 +103,7 @@ export default function PortfolioAppBar() {
                             }
                         }}
                         size={'small'}
+                        onClick={() => handleNavagate('/projects')}
                     >
                         Projects
                     </Button>
@@ -113,6 +124,6 @@ export default function PortfolioAppBar() {
                     </Tooltip>
                 </Toolbar>
             </AppBar>
-        </Fade>
+        // </Fade>
     )
 }

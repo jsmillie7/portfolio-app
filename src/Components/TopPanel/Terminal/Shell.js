@@ -152,6 +152,8 @@ export function JShell({ commands, delay }) {
                                 inputMode={'text'}
                                 autoCapitalize={'none'}
                                 autoFocus={true}
+                                // autoCorrect={'none'}
+                                spellCheck={false}
                                 value={stdin}
                                 onChange={e => setStdin(e.target.value)}
                                 style={{
