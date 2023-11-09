@@ -5,6 +5,7 @@ import { Box, Paper, Typography, useTheme } from "@mui/material";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../../App";
 import { Terminal } from "./Terminal";
+import { useLocation } from "react-router-dom";
 
 
 const jTerm = new Terminal();
@@ -22,8 +23,14 @@ export function JShell({ commands, delay }) {
     const { isMobile } = useContext(AppContext);
     const loopRef = useRef(0)
     const stdinRef = useRef('')
+    const { pathname } = useLocation();
     commands = commands || []
     delay = Number(delay) || 0
+
+    useEffect(() => {
+        console.log('clear log on mount')
+        jTerm.runCommand('clear')
+      }, [pathname]);
 
     /**
      * Write the stdin state variable to a ref so async loops can reach it
