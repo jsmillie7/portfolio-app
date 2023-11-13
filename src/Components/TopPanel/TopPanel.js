@@ -30,7 +30,7 @@ export default function TopPanel() {
     ]
 
     return (
-        <Hero backgroundImage={topoImg} scale={2}>
+        <Hero backgroundImage={topoImg} backgroundSize={'contain'} scale={2}>
             <NamePlate name={name} />
             <JShell
                 commands={commands}

@@ -4,10 +4,17 @@ import { AppContext } from "../../App";
 
 
 
-export default function Hero({ backgroundImage, scale,children }) {
+export default function Hero({ 
+    backgroundImage, 
+    backgroundSize,
+    scale,
+    BoxProps,
+    children 
+}) {
     const { isMobile } = useContext(AppContext);
     const heroRef = useRef();
     scale = scale || 1
+    backgroundSize = backgroundSize || 'cover'
 
     /**
      * Hook to set the parallax on the scroll of the Home panel
@@ -55,7 +62,15 @@ export default function Hero({ backgroundImage, scale,children }) {
             flexDirection={'column'}
             alignItems={'center'}
             justifyContent={'center'}
-            sx={{ backgroundImage: `url(${backgroundImage})` }}
+            sx={{ 
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: backgroundSize,
+                backgroundPosition: 'center',
+                ...BoxProps
+                // backgroundRepeat: 'no-repeat'
+            }}
+            overflow={'clip'}
+            {...BoxProps}
         >
             {children}
         </Box>

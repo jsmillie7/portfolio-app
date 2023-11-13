@@ -105,7 +105,7 @@ class catCmd extends baseCmd{
             case '':
                 return 'cat: No file specified'
             case 'welcome.txt':
-                return 'Thanks for checking out my portfolio!'
+                return ''
             default:
                 return `cat: ${this.args}: No such file or directory`
         }

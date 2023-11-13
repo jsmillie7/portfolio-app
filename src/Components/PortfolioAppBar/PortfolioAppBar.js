@@ -110,16 +110,18 @@ export default function PortfolioAppBar() {
                     <Tooltip title={'LinkedIn'} arrow>
                         <IconButton
                             sx={{
-                                color: "background.light",
+                                color: "text.primary",
+                                // color: "background.light",
                                 "&:hover": {
                                     color: "icon.default"
-                                }
+                                },
+                                dropShadow: '#DCDCDC'
                             }}
-                            size={'large'}
+                            size={'medium'}
                             href="https://www.linkedin.com/in/james-s-a03574124"
                             target="_blank"
                         >
-                            <LinkedInIcon fontSize={"large"} />
+                            <LinkedInIcon fontSize={"medium"} />
                         </IconButton>
                     </Tooltip>
                 </Toolbar>

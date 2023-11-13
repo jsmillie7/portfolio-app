@@ -1,31 +1,25 @@
-import { Outlet, Link, BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
-  Box, Button,
-  Collapse, Container,
+  Box,
+  Collapse,
   createTheme,
-  CssBaseline, Slide,
-  ThemeProvider, Toolbar,
-  Typography, Stack, useMediaQuery,
-  IconButton, Menu, Fab, Grid, Tooltip, Fade
+  CssBaseline,
+  ThemeProvider,
+  Typography
 } from "@mui/material";
-import MenuList from "@mui/material/MenuList";
 import { getPages } from "./pages";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import MenuItem from "@mui/material/MenuItem";
-import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
+import MenuItem from "@mui/material/MenuItem"
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import TopPanel from "./Components/TopPanel/TopPanel";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import { isMobile } from 'react-device-detect';
 import PortfolioAppBar from "./Components/PortfolioAppBar/PortfolioAppBar";
 import Home from "./Components/Home/Home";
 import Projects from "./Components/Projects/Projects";
+import Geomodeling from "./Components/Projects/Geomodeling/Geomodeling";
+import ProjectNotFound from "./Components/Projects/ProjectNotFound";
+import CloudSim from "./Components/Projects/CloudSim/CloudSim";
 
 
 const themeLight = createTheme({
@@ -78,7 +72,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.5.3';
+let appVersion = 'v0.5.5';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -87,7 +81,7 @@ export default function App() {
   const pages = getPages()
   const allPages = useRef(null)
   allPages.current = []
- 
+
 
   useEffect(() => {
     console.log(currentPage)
@@ -137,8 +131,10 @@ export default function App() {
               <HandleScroll />
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="projects" element={<Projects />} />
-                {/* </Route> */}
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/projects/geomodeling" element={<Geomodeling />} />
+                <Route path="/projects/cloudsim" element={<CloudSim />} />
+                <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
             </BrowserRouter>
 

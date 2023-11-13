@@ -1,4 +1,4 @@
-const terminal = require('./terminal')
+const terminal = require('./Terminal')
 
 const myTerm = new terminal()
 console.log(myTerm.runCommand('echo "This is a test"').stdout)
