@@ -25,6 +25,7 @@ export default function CloudSim() {
                 p={2}
             >
                 <Typography variant='h4' align='center'>CloudSim</Typography>
+                <Typography>A web application fully integrated for running high-performance simulations on the cloud</Typography>
             </Box>
             {/* </Hero> */}
         </Box>

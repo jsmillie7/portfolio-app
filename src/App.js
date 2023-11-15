@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import {
   Box,
   Collapse,
@@ -72,7 +72,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.5.5';
+let appVersion = 'v0.5.7';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -126,7 +126,8 @@ export default function App() {
 
           <Box sx={{ overflowX: 'hidden', overflowY: 'auto', width: '100vw', display: 'flex', flexDirection: "column" }}>
 
-            <BrowserRouter>
+            {/* <BrowserRouter> */}
+            <HashRouter >
               <PortfolioAppBar />
               <HandleScroll />
               <Routes>
@@ -136,7 +137,8 @@ export default function App() {
                 <Route path="/projects/cloudsim" element={<CloudSim />} />
                 <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
-            </BrowserRouter>
+              </HashRouter>
+            {/* </BrowserRouter> */}
 
           </Box>
 
