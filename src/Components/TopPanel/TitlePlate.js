@@ -47,7 +47,7 @@ export default function TitlePlate({ title }) {
                 }}
             >
                 <Typography
-                    fontFamily={'monospace'}
+                    fontFamily={'Space Mono'}
                     // variant={'h6'}
                     color={'text.primary'}
                 >

@@ -104,8 +104,8 @@ class catCmd extends baseCmd{
         switch (this.args) {
             case '':
                 return 'cat: No file specified'
-            case 'welcome.txt':
-                return ''
+            case 'about.txt':
+                return 'A mid-level software developer with a talent for ux/ui design.'
             default:
                 return `cat: ${this.args}: No such file or directory`
         }

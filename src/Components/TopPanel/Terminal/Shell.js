@@ -122,13 +122,13 @@ export function JShell({ commands, delay }) {
                     {history.map((cmd, idx) => (
                         <Box display={'flex'} flexDirection={'column'} key={idx}>
                             <Typography
-                                fontFamily={'monospace'}
+                                fontFamily={'Space Mono'}
                                 color={'text.primary'}
                             >
                                 smillie% {cmd.stdin}
                             </Typography>
                             <Typography
-                                fontFamily={'monospace'}
+                                fontFamily={'Space Mono'}
                                 color={'text.primary'}
                             >
                                 {cmd.stdout}
@@ -148,7 +148,7 @@ export function JShell({ commands, delay }) {
                         >
                             <span>
                                 <Typography
-                                    fontFamily={'monospace'}
+                                    fontFamily={'Space Mono'}
                                     color={'text.primary'}
                                 >
                                     smillie%&nbsp;
@@ -166,7 +166,7 @@ export function JShell({ commands, delay }) {
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    fontFamily: 'monospace',
+                                    fontFamily: 'Space Mono',
                                     fontSize: '16px',
                                     color: theme.palette.text.primary,
                                     display: 'flex',

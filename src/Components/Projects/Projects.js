@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
+import { Backdrop, Box, Container, Grid, Typography, useTheme } from "@mui/material";
 import Hero from "../shared/hero";
 import topoImg from '../../images/topo.png'
 // import topoImg from '../../images/mtn.jpg'
@@ -6,7 +6,7 @@ import geoMtnImg from '../../images/mtn.jpg'
 import laserImg from '../../images/laser.jpg'
 import dashboardImg from '../../images/cloudsim.png'
 // import dashboardImg from './CloudSim/images/dashboard.png'
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import Geomodeling from "./Geomodeling/Geomodeling";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -34,21 +34,24 @@ export default function Projects() {
 }
 
 
-function ProjectsGrid() {
+export function ProjectsGrid() {
 
     const projects = [
         {
             title: 'CloudSim',
+            desc: 'A fully integrated web application for managing high-performance computing on the cloud',
             img: dashboardImg,
             link: '/projects/cloudsim'
         },
         {
             title: 'Scale-Modeling Mountains',
+            desc: 'Using software and hardware to build 3d models',
             img: geoMtnImg,
             link: '/projects/geomodeling'
         },
         {
             title: 'CNC Laser Cutter',
+            desc: 'Building an accurate 2-axis GRBL-based laser cutter on a budget',
             img: laserImg,
             link: '/projects/laser'
         },
@@ -60,6 +63,7 @@ function ProjectsGrid() {
                 <Grid item xs={12} sm={12} md={6}>
                     <ProjectCard
                         title={proj.title}
+                        description={proj?.desc}
                         backgroundImage={proj.img}
                         link={proj.link}
                     />
@@ -71,10 +75,19 @@ function ProjectsGrid() {
 }
 
 
-function ProjectCard({ title, backgroundImage, link }) {
+function ProjectCard({ title, description, backgroundImage, link }) {
     const { isMobile } = useContext(AppContext)
     const theme = useTheme();
     const navigate = useNavigate()
+    const [showTitle, setShowTitle] = useState(false)
+
+    const handleClick = () => {
+        if (showTitle) {
+            navigate(link)
+        } else {
+            setShowTitle(true)
+        }
+    }
 
     return (
         <Box
@@ -91,10 +104,57 @@ function ProjectCard({ title, backgroundImage, link }) {
             position={'relative'}
             overflow={'clip'}
             borderRadius={1}
-            onClick={() => navigate(link)}
+            onClick={handleClick}
+            onMouseEnter={() => setShowTitle(!isMobile)}
+            onMouseLeave={() => setShowTitle(false)}
         >
             <img src={backgroundImage} style={{ height: '100%', width: '100%', objectFit: 'cover' }} />
-            <Box
+            <Backdrop
+                open={showTitle}
+                sx={{ position: 'absolute', bgcolor: 'rgba(34, 40, 49, 0.85)' }}
+            >
+                <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    height={'100%'}
+                    padding={4}
+                >
+                    <Typography
+                        fontWeight={'bold'}
+                        variant={isMobile ? 'h6' : 'h4'}
+                        color={'text.primary'}
+                        align={'center'}
+                    >
+                        {title}
+                    </Typography>
+                    <Typography
+                        fontWeight={200}
+                        variant={'body1'}
+                        color={'text.primary'}
+                        align={'center'}
+                        gutterBottom
+                    >
+                        {description}
+                    </Typography>
+
+                </Box>
+                <Typography
+                    fontFamily={'Space Mono'}
+                    variant={'body2'}
+                    sx={{
+                        position: 'absolute',
+                        bottom: 1,
+                        left: '50%',
+                        transform: 'translateX(-50%)'
+                    }}
+                    gutterBottom
+                >
+                    [view project]
+                </Typography>
+            </Backdrop>
+            {/* <Box
                 flex={1}
                 bgcolor={'rgba(39, 62, 70, 0.85)'}
                 p={1}
@@ -102,10 +162,8 @@ function ProjectCard({ title, backgroundImage, link }) {
                 width={'100%'}
             >
 
-                <Typography fontWeight={'bold'} variant={'body2'} color={'text.primary'}>
-                    {title}
-                </Typography>
-            </Box>
+                
+            </Box> */}
 
         </Box>
     )
@@ -123,7 +181,7 @@ export function CodeBlock({ children }) {
                 {children}
             </pre>
             {/* {lines.map(line => (
-                <Typography fontFamily={'monospace'} color={'text.primary'}>
+                <Typography fontFamily={'Space Mono'} color={'text.primary'}>
                     {line}
                 </Typography>
             ))} */}

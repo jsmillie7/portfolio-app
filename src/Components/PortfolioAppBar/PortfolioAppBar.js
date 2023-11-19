@@ -48,10 +48,11 @@ export default function PortfolioAppBar() {
                         variant={'h5'}
                         component="div"
                         sx={{
-                            fontFamily: 'monospace',
-                            fontWeight: 450,
+                            // fontFamily: 'Space Mono',
+                            // fontWeight: 450,
                             userSelect: 'none'
                         }}
+                        fontFamily={'Space Mono'}
                     // onClick={() => handleChange(0)}
                     >
                         js
@@ -61,7 +62,7 @@ export default function PortfolioAppBar() {
                         variant={'h5'}
                         component="div"
                         sx={{
-                            fontFamily: 'monospace',
+                            fontFamily: 'Space Mono',
                             fontWeight: 450,
                             userSelect: 'none'
                         }}
@@ -73,7 +74,7 @@ export default function PortfolioAppBar() {
                         variant={'h5'}
                         component="div"
                         sx={{
-                            fontFamily: 'monospace',
+                            fontFamily: 'Space Mono',
                             flexGrow: 1,
                             fontWeight: 450,
                             userSelect: 'none'

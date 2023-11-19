@@ -8,6 +8,7 @@ import TopPanel from "./Components/TopPanel/TopPanel";
 import Contact from "./Components/Contact/Contact"
 import Dummy from "./Components/Dummy/Dummy";
 import Biography from './Components/Biography/Biography';
+import ProjectsHomePanel from './Components/Projects/ProjectsHomePanel';
 
 let pages = [
     {
@@ -33,20 +34,27 @@ let pages = [
     },
     {
         index: 3,
-        urlName: "software",
-        dispName: "Software",
+        urlName: "projects",
+        dispName: "Projects",
         icon: <CodeRoundedIcon fontSize={"medium"}/>,
-        component: Dummy
+        component: ProjectsHomePanel
     },
+    // {
+    //     index: 4,
+    //     urlName: "software",
+    //     dispName: "Software",
+    //     icon: <CodeRoundedIcon fontSize={"medium"}/>,
+    //     component: Dummy
+    // },
+    // {
+    //     index: 5,
+    //     urlName: "hardware",
+    //     dispName: "Hardware",
+    //     icon: <ArchitectureOutlinedIcon fontSize={"medium"}/>,
+    //     component: Dummy
+    // },
     {
         index: 4,
-        urlName: "hardware",
-        dispName: "Hardware",
-        icon: <ArchitectureOutlinedIcon fontSize={"medium"}/>,
-        component: Dummy
-    },
-    {
-        index: 5,
         urlName: "contact",
         dispName: "Contact",
         icon: <EmailOutlinedIcon fontSize={"medium"}/>,

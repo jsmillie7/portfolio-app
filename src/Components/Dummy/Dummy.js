@@ -18,7 +18,7 @@ export default function Dummy(props) {
                     <Typography
                         variant={'body1'}
                         sx={{
-                            fontFamily: 'Monospace',
+                            fontFamily: 'Space Mono',
                             fontSize: 30,
                             fontStyle: 'bold'
                         }}
@@ -26,7 +26,7 @@ export default function Dummy(props) {
                     >
                         {props.page.dispName}
                     </Typography>
-                    <Typography variant={"subtitle1"} paragraph maxWidth={"500px"}>
+                    <Typography variant={"subtitle1"} paragraph maxWidth={"500px"} fontFamily={'sans-serif'}>
                         This section describes things related to <strong>{props.page.dispName}</strong>. There are many things to 
                         be done to make this page look good. Components will be built, layout will be tweaked,
                         designs will be iterated, brewskis consumed, and the overall ui will come together to 

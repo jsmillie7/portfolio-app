@@ -64,6 +64,7 @@ export default function NamePlate({ name }) {
                     marginBottom: '100px'
                 }}
                 fontWeight={'normal'}
+                fontFamily={'Chivo'}
                 align={'center'}
                 noWrap
             >

@@ -46,7 +46,7 @@ export default function Skill(props) {
             <Box>
                 <Typography
                     color={'text.primary'}
-                    fontWeight={'600'}
+                    fontWeight={'400'}
                     gutterBottom
                 >
                     {skill.title}
@@ -59,7 +59,12 @@ export default function Skill(props) {
 
             // margin={2}
             >
-                <Typography color={'text.primary'} fontSize={'12px'} fontWeight={'400'} align={'center'}>
+                <Typography
+                    color={'text.primary'}
+                    fontSize={'12px'}
+                    fontWeight={'200'}
+                    align={'center'}
+                >
                     {skill.subtitle}
                 </Typography>
             </Box>

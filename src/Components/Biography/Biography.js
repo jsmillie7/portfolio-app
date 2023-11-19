@@ -15,14 +15,7 @@ export default function Biography() {
     
     function aboutMe () {
         return (
-            <Typography
-                paragraph
-                sx={{
-                    fontSize: 16,
-                    fontWeight: 'light',
-                    opacity: '100%'
-                }}
-            >
+            <Typography paragraph>
                 Python connoisseur with a diverse skillset and a passion for creating clean, intuitive,
                 and efficient software solutions using object-oriented code. I enjoy creating user-friendly 
                 experiences with an attention to detail.
@@ -112,15 +105,13 @@ export default function Biography() {
                     <CardContent>
                         <Box>
                             <Typography
-                                variant={'body1'}
-                                sx={{
-                                    fontFamily: 'Monospace',
-                                    fontSize: 16,
-                                }}
+                                // variant={'body1'}
+                                variant={isMobile ? 'body1' : 'h6'}
+                                fontFamily={'Space Mono'}
                             >
                                 Hey there, I'm
                             </Typography>
-                            <Typography variant={'h4'} gutterBottom color={'text.secondary'} sx={{ fontWeight: 520}}>
+                            <Typography variant={'h4'} gutterBottom color={'text.secondary'} fontWeight={'bold'} fontFamily={'Chivo'}>
                                 James Smillie.
                             </Typography>
                             <BrowserView>
@@ -150,6 +141,9 @@ export default function Biography() {
                     flex: 1
                 }}
             >
+                <Typography align="center" variant="h4" gutterBottom fontWeight={'200'}>
+                    Skills & Expertise
+                </Typography>
                     <Grid
                         container
                         direction="row"

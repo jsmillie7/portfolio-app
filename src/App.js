@@ -20,7 +20,9 @@ import Projects from "./Components/Projects/Projects";
 import Geomodeling from "./Components/Projects/Geomodeling/Geomodeling";
 import ProjectNotFound from "./Components/Projects/ProjectNotFound";
 import CloudSim from "./Components/Projects/CloudSim/CloudSim";
+import './App.css';
 
+// const monospaceFont =  "'Space Mono', sans-serif";
 
 const themeLight = createTheme({
   palette: {
@@ -55,10 +57,7 @@ const themeDark = createTheme({
       light: "#393E46"
     },
     text: {
-      // primary: "#EEEEEE",
       primary: "#ede4d3",
-      // secondary: "#ede4d3"
-      // secondary: "#bbbbbb"
       secondary: "#B55400"
     },
     icon: {
@@ -66,13 +65,25 @@ const themeDark = createTheme({
       active: "#ede4d3",
       dark: "#9B6A47"
     },
-  }
+  },
+  typography: {
+    fontFamily: [
+      'Chivo', 
+      'Space Mono'
+    ].join(','),
+    body1: {
+      fontWeight: 200,
+    },
+    button: {
+      textTransform: "none"
+    }
+    },
 });
 
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.5.7';
+let appVersion = 'v0.6.2';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -125,8 +136,6 @@ export default function App() {
 
 
           <Box sx={{ overflowX: 'hidden', overflowY: 'auto', width: '100vw', display: 'flex', flexDirection: "column" }}>
-
-            {/* <BrowserRouter> */}
             <HashRouter >
               <PortfolioAppBar />
               <HandleScroll />
@@ -138,8 +147,6 @@ export default function App() {
                 <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
               </HashRouter>
-            {/* </BrowserRouter> */}
-
           </Box>
 
           {/* TODO: Remove the following block before production */}

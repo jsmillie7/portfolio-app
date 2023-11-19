@@ -26,7 +26,7 @@ export default function TopPanel() {
 
     const commands = [
         'whoami',
-        'cat welcome.txt'
+        'cat about.txt'
     ]
 
     return (
