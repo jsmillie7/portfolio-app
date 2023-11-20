@@ -48,12 +48,14 @@ export default function PortfolioAppBar() {
                         variant={'h5'}
                         component="div"
                         sx={{
-                            // fontFamily: 'Space Mono',
-                            // fontWeight: 450,
-                            userSelect: 'none'
+                            userSelect: 'none',
+                            ':hover': {
+                                color: 'text.secondary',
+                                cursor: 'pointer'
+                            }
                         }}
                         fontFamily={'Space Mono'}
-                    // onClick={() => handleChange(0)}
+                        onClick={() => navigate('/')}
                     >
                         js
                     </Typography>
@@ -64,27 +66,14 @@ export default function PortfolioAppBar() {
                         sx={{
                             fontFamily: 'Space Mono',
                             fontWeight: 450,
-                            userSelect: 'none'
+                            userSelect: 'none',
+                            flexGrow: 1,
                         }}
                     >
                         &nbsp;|&nbsp;
                     </Typography>
-                    <Typography
-                        color={'icon.default'}
-                        variant={'h5'}
-                        component="div"
-                        sx={{
-                            fontFamily: 'Space Mono',
-                            flexGrow: 1,
-                            fontWeight: 450,
-                            userSelect: 'none'
-                        }}
-                    >
-                        {/* {pages[currentPage].dispName.toLowerCase()} PAGE PLACEHOLDER */}
-                    </Typography>
                     <Button
                         sx={{
-                            textTransform: 'none',
                             color: theme.palette.text.primary,
                             '&:hover': {
                                 color: theme.palette.text.secondary

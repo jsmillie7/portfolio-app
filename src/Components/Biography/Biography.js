@@ -9,7 +9,8 @@ import buffsLogo from './assets/buffs.svg'
 import awsLogo from './assets/aws.svg'
 import electronLogo from './assets/electron.svg'
 import Skill from './Skill'
-import { useEffect, useState } from "react";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 export default function Biography() {
     
@@ -141,9 +142,25 @@ export default function Biography() {
                     flex: 1
                 }}
             >
-                <Typography align="center" variant="h4" gutterBottom fontWeight={'200'}>
-                    Skills & Expertise
-                </Typography>
+                <Box
+                    display={'flex'}
+                    flexDirection={'row'}
+                    alignItems={'center'}
+                    paddingY={2}
+                    paddingLeft={isMobile ? 0 : 2}
+                >
+                    <KeyboardArrowRightIcon fontSize={'large'} />
+                    <Typography
+                        variant="h4"
+                        fontWeight={'200'}
+                        noWrap
+                    >
+                        Skills & Expertise
+                    </Typography>
+                </Box>
+                {/* <Typography align="center" variant="h4" gutterBottom fontWeight={'200'}>
+                    
+                </Typography> */}
                     <Grid
                         container
                         direction="row"

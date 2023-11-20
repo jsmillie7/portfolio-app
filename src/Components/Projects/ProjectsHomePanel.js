@@ -1,27 +1,42 @@
-import { Box, Button, Container, Divider, Stack, Typography } from "@mui/material";
-import dashboardImg from '../../images/cloudsim.png'
-import geoMtnImg from '../../images/mtn.jpg'
+import { Box, Button, Container, Divider, Stack, Typography, useTheme } from "@mui/material";
 import { ProjectsGrid } from "./Projects";
+import { useNavigate } from "react-router-dom";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useContext } from "react";
+import { AppContext } from "../../App";
+
 
 
 export default function ProjectsHomePanel() {
+    const navigate = useNavigate()
+    const theme = useTheme();
+    const {isMobile} = useContext(AppContext);
 
     return (
         <Box paddingY={2}>
             <Container maxWidth={'lg'}>
-                <Typography
-                    align="center"
-                    variant="h4"
-                    // gutterBottom
-                    fontWeight={'200'}
-                    sx={{padding: 4}}
+                <Box
+                    display={'flex'}
+                    flexDirection={'row'}
+                    alignItems={'center'}
+                    paddingY={2}
+                    paddingLeft={isMobile ? 0 : 2}
                 >
-                    Projects
-                </Typography>
-                <ProjectsGrid />
-                <Divider sx={{marginY: 2}}>
+                    <KeyboardArrowRightIcon fontSize={'large'} />
+                    <Typography
+                        variant="h4"
+                        fontWeight={'200'}
+                    >
+                        Projects
+                    </Typography>
+                </Box>
+
+                <ProjectsGrid maxProjects={2} />
+                <Divider sx={{ marginY: 2 }}>
                     <Button
                         size={'large'}
+                        onClick={() => navigate('/projects')}
+                        sx={{ color: theme.palette.text.primary }}
                     >
                         View All Projects
                     </Button>

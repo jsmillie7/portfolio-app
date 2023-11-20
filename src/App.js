@@ -21,6 +21,7 @@ import Geomodeling from "./Components/Projects/Geomodeling/Geomodeling";
 import ProjectNotFound from "./Components/Projects/ProjectNotFound";
 import CloudSim from "./Components/Projects/CloudSim/CloudSim";
 import './App.css';
+import CopyRight from "./Components/shared/Copyright";
 
 // const monospaceFont =  "'Space Mono', sans-serif";
 
@@ -83,7 +84,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.6.2';
+let appVersion = 'v0.6.4';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -110,23 +111,8 @@ export default function App() {
     showAppBar, setShowAppBar,
   }), [currentPage, isMobile, showAppBar])
 
-  function buildMenu() {
-    return (
-      pages.map((page, idx) => (
-        <DrawerItem key={idx} page={page} index={idx} callback={handleChange} />
-      )))
-  }
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-
-  const handleShowMobileMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMobileMenu = () => {
-    setAnchorEl(null);
-  };
 
   return (
     <ThemeProvider theme={darkMode ? themeDark : themeLight}>
@@ -147,6 +133,7 @@ export default function App() {
                 <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
               </HashRouter>
+              <CopyRight/>
           </Box>
 
           {/* TODO: Remove the following block before production */}

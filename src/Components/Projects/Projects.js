@@ -13,11 +13,12 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 
 
 export default function Projects() {
+    const { isMobile } = useContext(AppContext)
 
     return (
         <Box>
             <Hero backgroundImage={topoImg} backgroundSize={'contain'} scale={2}>
-                <Typography variant="h1">
+                <Typography variant={isMobile ? 'h3' : 'h1'}>
                     Projects
                 </Typography>
             </Hero>
@@ -34,7 +35,7 @@ export default function Projects() {
 }
 
 
-export function ProjectsGrid() {
+export function ProjectsGrid({ maxProjects }) {
 
     const projects = [
         {
@@ -57,9 +58,11 @@ export function ProjectsGrid() {
         },
     ]
 
+    maxProjects = maxProjects || projects.length
+
     return (
         <Grid container spacing={4}>
-            {projects.map(proj => (
+            {projects.slice(0, maxProjects).map(proj => (
                 <Grid item xs={12} sm={12} md={6}>
                     <ProjectCard
                         title={proj.title}
@@ -145,26 +148,18 @@ function ProjectCard({ title, description, backgroundImage, link }) {
                     variant={'body2'}
                     sx={{
                         position: 'absolute',
-                        bottom: 1,
+                        bottom: '5%',
                         left: '50%',
-                        transform: 'translateX(-50%)'
+                        transform: 'translateX(-50%)',
+                        ':hover': {
+                            color: 'text.secondary'
+                        }
                     }}
                     gutterBottom
                 >
                     [view project]
                 </Typography>
             </Backdrop>
-            {/* <Box
-                flex={1}
-                bgcolor={'rgba(39, 62, 70, 0.85)'}
-                p={1}
-                position={'absolute'}
-                width={'100%'}
-            >
-
-                
-            </Box> */}
-
         </Box>
     )
 }
