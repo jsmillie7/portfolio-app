@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../App";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-
+import './hero.css'
 
 export default function Hero({
     backgroundImage,
@@ -39,7 +39,7 @@ export default function Hero({
             if (heroRef.current) {
                 if (scrollPct < (1 / (scale + 1)) && panelHt > 0) {
                     heroRef.current.style.height = `${panelHt}px`;
-                    scrollRef.current.style.opacity = `${(panelHt/origVpHeight)**3*100}%`
+                    scrollRef.current.style.opacity = `${(panelHt / origVpHeight) ** 3 * 100}%`;
                 }
             }
         };
@@ -75,7 +75,6 @@ export default function Hero({
             overflow={'clip'}
             {...BoxProps}
         >
-            {/* <ScrollIcon /> */}
             {children}
             <Box
                 ref={scrollRef}
@@ -83,10 +82,12 @@ export default function Hero({
                 bottom={'0.5em'}
                 left={'50%'}
                 zIndex={0}
-                // transform={'translateX(-50%)'}
-                sx={{transform: 'translateX(-50%)'}}
+                sx={{ transform: 'translateX(-50%)' }}
             >
-                <KeyboardDoubleArrowDownIcon fontSize={'large'} />
+                <KeyboardDoubleArrowDownIcon
+                    fontSize={'large'}
+                    className={'bounce'}
+                />
             </Box>
         </Box>
     );
