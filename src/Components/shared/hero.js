@@ -1,20 +1,21 @@
 import { Box } from "@mui/material";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../App";
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 
-
-export default function Hero({ 
-    backgroundImage, 
+export default function Hero({
+    backgroundImage,
     backgroundSize,
     scale,
     BoxProps,
-    children 
+    children
 }) {
     const { isMobile } = useContext(AppContext);
     const heroRef = useRef();
-    scale = scale || 1
-    backgroundSize = backgroundSize || 'cover'
+    const scrollRef = useRef();
+    scale = scale || 1;
+    backgroundSize = backgroundSize || 'cover';
 
     /**
      * Hook to set the parallax on the scroll of the Home panel
@@ -27,17 +28,18 @@ export default function Hero({
             if (isMobile) {
                 // mobile browsers hide the url bar as you scroll which makes 
                 // the ui twitchy otherwise.
-                height = origVpHeight
+                height = origVpHeight;
             } else {
                 // allows for resizing of desktop browser.
                 height = window.innerHeight;
             }
             const scrollY = window.scrollY;
-            const panelHt = origVpHeight - (scale * scrollY)
-            const scrollPct = scrollY / origVpHeight
+            const panelHt = origVpHeight - (scale * scrollY);
+            const scrollPct = scrollY / origVpHeight;
             if (heroRef.current) {
-                if (scrollPct < (1 / (scale+1)) && panelHt > 0) {
-                    heroRef.current.style.height = `${panelHt}px`
+                if (scrollPct < (1 / (scale + 1)) && panelHt > 0) {
+                    heroRef.current.style.height = `${panelHt}px`;
+                    scrollRef.current.style.opacity = `${(panelHt/origVpHeight)**3*100}%`
                 }
             }
         };
@@ -51,7 +53,7 @@ export default function Hero({
         };
     }, []);
 
-    
+
 
     return (
         <Box
@@ -62,7 +64,8 @@ export default function Hero({
             flexDirection={'column'}
             alignItems={'center'}
             justifyContent={'center'}
-            sx={{ 
+            position={'relative'}
+            sx={{
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: backgroundSize,
                 backgroundPosition: 'center',
@@ -72,7 +75,17 @@ export default function Hero({
             overflow={'clip'}
             {...BoxProps}
         >
+            {/* <ScrollIcon /> */}
             {children}
+            <Box
+                ref={scrollRef}
+                position={'absolute'}
+                bottom={'0.5em'}
+                left={'50%'}
+                zIndex={-20}
+            >
+                <KeyboardDoubleArrowDownIcon fontSize={'large'} />
+            </Box>
         </Box>
-    )
+    );
 }
