@@ -18,6 +18,7 @@ import topoImg from '../../../images/topo.png';
 import { useNavigate } from 'react-router-dom';
 import Technology, { PortfolioIcon } from '../Common/Technology';
 import ProjectTitle from '../Common/ProjectTitle';
+import ProjectBody from '../Common/ProbjectBody';
 
 export default function CloudSim() {
     const { isMobile } = useContext(AppContext);
@@ -36,14 +37,7 @@ export default function CloudSim() {
             >
                 {/* <Box border={'1px solid red'} height={'100%'} width={'100%'} /> */}
             </Hero>
-            <Container
-                maxWidth={'lg'}
-            >
-                <Box
-                    minHeight={'100vh'}
-                    width={'100%'}
-                    paddingTop={3}
-                >
+            <ProjectBody>
                     <ProjectTitle
                         title={'CloudSim'}
                         subtitle={'A fully integrated web application for managing high-performance computing on the cloud'}
@@ -112,8 +106,8 @@ export default function CloudSim() {
                             </Typography>
                         </Box>
                     </Stack>
-                </Box>
-            </Container>
+                {/* </Box> */}
+            </ProjectBody>
             <Box
                 width={'100%'}
                 sx={{

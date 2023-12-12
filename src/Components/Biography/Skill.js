@@ -38,9 +38,10 @@ export default function Skill(props) {
                         height: iconSize,
                         position: 'relative',
                         zIndex: 0,
+                        userSelect: 'none'
                     }}
                 >
-                    <img src={skill.icon} height={iconSize} width={iconSize} />
+                    <img src={skill.icon} height={iconSize} width={iconSize} style={{userSelect: 'none'}}/>
                 </Icon>
             </Box>
             <Box>
@@ -48,6 +49,7 @@ export default function Skill(props) {
                     color={'text.primary'}
                     fontWeight={'400'}
                     gutterBottom
+                    sx={{userSelect: 'none'}}
                 >
                     {skill.title}
                 </Typography>
@@ -64,6 +66,7 @@ export default function Skill(props) {
                     fontSize={'12px'}
                     fontWeight={'200'}
                     align={'center'}
+                    sx={{userSelect: 'none'}}
                 >
                     {skill.subtitle}
                 </Typography>

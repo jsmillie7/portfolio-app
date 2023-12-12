@@ -17,9 +17,10 @@ export default function Biography() {
     function aboutMe () {
         return (
             <Typography paragraph>
-                Python connoisseur with a diverse skillset and a passion for creating clean, intuitive,
-                and efficient software solutions using object-oriented code. I enjoy creating user-friendly 
-                experiences with an attention to detail.
+                An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack 
+                development, UX/UI design, and cross-platform desktop application development and testing.
+                I've done a little bit of everything. I enjoy creating robust, yet user-friendly 
+                experiences with a high attention to detail.
             </Typography>
         )
     }
@@ -56,7 +57,7 @@ export default function Biography() {
             title: 'Electron.js',
             subtitle: 'Develop, build and deliver  cross-platform JavaScript-based desktop applications',
             icon: electronLogo
-        },
+        }
     ]
 
     return (
