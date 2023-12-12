@@ -82,7 +82,9 @@ export default function Hero({
                 position={'absolute'}
                 bottom={'0.5em'}
                 left={'50%'}
-                zIndex={-20}
+                zIndex={0}
+                // transform={'translateX(-50%)'}
+                sx={{transform: 'translateX(-50%)'}}
             >
                 <KeyboardDoubleArrowDownIcon fontSize={'large'} />
             </Box>

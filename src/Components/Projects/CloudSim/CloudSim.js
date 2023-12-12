@@ -1,26 +1,28 @@
-import { Box, Button, Container, Divider, Grid, Icon, Stack, Typography } from '@mui/material'
-import CsDashboard from '../../../images/cloudsim.png'
-import Hero from '../../shared/hero'
-import { useContext, useEffect, useRef } from 'react'
-import { AppContext } from '../../../App'
-import reactLogo from '../../Biography/assets/react.svg'
-import awsLogo from '../../Biography/assets/aws.svg'
-import nodeLogo from '../../Biography/assets/node.svg'
-import pyLogo from '../../Biography/assets/python.svg'
-import nginxLogo from '../../Biography/assets/nginx.svg'
-import a from './images/a.png'
-import b from './images/b.png'
-import c from './images/c.png'
-import d from './images/d.png'
+import { Box, Button, Container, Divider, Grid, Icon, Stack, Typography } from '@mui/material';
+import CsDashboard from '../../../images/cloudsim.png';
+import Hero from '../../shared/hero';
+import { useContext, useEffect, useRef } from 'react';
+import { AppContext } from '../../../App';
+import reactLogo from '../../Biography/assets/react.svg';
+import awsLogo from '../../Biography/assets/aws.svg';
+import nodeLogo from '../../Biography/assets/node.svg';
+import pyLogo from '../../Biography/assets/python.svg';
+import nginxLogo from '../../Biography/assets/nginx.svg';
+import a from './images/a.png';
+import b from './images/b.png';
+import c from './images/c.png';
+import d from './images/d.png';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-import topoImg from '../../../images/topo.png'
-import { useNavigate } from 'react-router-dom'
+import topoImg from '../../../images/topo.png';
+import { useNavigate } from 'react-router-dom';
+import Technology, { PortfolioIcon } from '../Common/Technology';
+import ProjectTitle from '../Common/ProjectTitle';
 
 export default function CloudSim() {
-    const { isMobile } = useContext(AppContext)
-    const spacing = isMobile ? 1 : 2
-    const navigate = useNavigate()
+    const { isMobile } = useContext(AppContext);
+    const spacing = isMobile ? 1 : 2;
+    const navigate = useNavigate();
 
     return (
         <Box>
@@ -42,136 +44,19 @@ export default function CloudSim() {
                     width={'100%'}
                     paddingTop={3}
                 >
-                    <Box
-                        display={'flex'}
-                        flexDirection={{
-                            xs: 'column',
-                            sm: 'row',
-                            md: 'row',
-                            lg: 'row',
-                            xl: 'row'
-                        }}
-                    >
-                        <Typography
-                            variant={'body1'}
-                            color={'text.secondary'}
-                            fontWeight={200}
-                            sx={{
-                                typography: {
-                                    xs: 'h2',
-                                    sm: 'h2',
-                                    md: 'h2',
-                                    lg: 'h2',
-                                    xl: 'h2'
-                                }
-                            }}
-                        >
-                            Project:&nbsp;
-                        </Typography>
-                        <Typography
-                            color={'text.primary'}
-                            sx={{
-                                typography: {
-                                    xs: 'h2',
-                                    sm: 'h2',
-                                    md: 'h2',
-                                    lg: 'h2',
-                                    xl: 'h2'
-                                }
-                            }}
-                            fontWeight={400}
-                            gutterBottom
-                        >
-                            CloudSim
-                        </Typography>
-                    </Box>
-
-                    <Typography variant={'h5'} fontWeight={200}>
-                        A fully integrated web application for managing high-performance
-                        computing on the cloud
-                    </Typography>
-                    <Box
-                        width={{
-                            xs: 'fit-content',
-                            sm: 'fit-content',
-                            md: 'fit-content',
-                            lg: 'fit-content',
-                            xl: 'fit-content'
-                        }}
-                        bgcolor={'background.default'}
-                        padding={1}
-                        borderRadius={2}
-                        border={'1px solid grey'}
-                        marginY={3}
-                        sx={{
-                            backgroundImage: `url(${topoImg})`,
-                        }}
-                    >
-                        <Divider>
-                            <Typography variant={'h6'} fontFamily={'Space Mono'}>Technology{ }</Typography>
-                        </Divider>
-                        <Grid
-                            container
-                            spacing={4}
-                            sx={{ padding: 2 }}
-                        >
-                            <Grid
-                                item
-                                xs
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <PortfolioIcon icon={nodeLogo} title={'node.js'} />
-                            </Grid>
-                            <Grid
-                                item
-                                xs
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <PortfolioIcon icon={reactLogo} title={'react'} />
-                            </Grid>
-                            <Grid
-                                item
-                                xs
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <PortfolioIcon icon={awsLogo} title={'aws'} />
-                            </Grid>
-                            <Grid
-                                item
-                                xs
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <PortfolioIcon icon={pyLogo} title={'python3'} />
-                            </Grid>
-                            <Grid
-                                item
-                                xs
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <PortfolioIcon icon={nginxLogo} title={'nginx'} />
-                            </Grid>
-                        </Grid>
-                    </Box>
+                    <ProjectTitle
+                        title={'CloudSim'}
+                        subtitle={'A fully integrated web application for managing high-performance computing on the cloud'}
+                    />
+                    <Technology
+                        icons={[
+                            <PortfolioIcon icon={nodeLogo} title={'node.js'} />,
+                            <PortfolioIcon icon={reactLogo} title={'react'} />,
+                            <PortfolioIcon icon={awsLogo} title={'aws'} />,
+                            <PortfolioIcon icon={pyLogo} title={'python3'} />,
+                            <PortfolioIcon icon={nginxLogo} title={'nginx'} />
+                        ]}
+                    />
                     <Stack
                         direction={isMobile ? 'column' : 'row'}
                         divider={
@@ -260,7 +145,7 @@ export default function CloudSim() {
                 </Button>
             </Box>
         </Box>
-    )
+    );
 }
 
 
@@ -277,25 +162,25 @@ function Gallery({ spacing, children }) {
             </Stack>
         </Box>
 
-    )
+    );
 }
 
 
 function GalleryRow({ images, spacing, end }) {
     const galleryRowRef = useRef();
-    end = end || false
+    end = end || false;
 
     useEffect(() => {
-        if (!end) return
+        if (!end) return;
         const timeout = setTimeout(() => {
             galleryRowRef.current.scrollTo({
                 left: galleryRowRef.current.scrollLeftMax,
                 behavior: 'instant'
-            })
+            });
             // galleryRowRef.current.scrollTo(galleryRowRef.current.scrollLeftMax, 0)
-        }, 5000)
-        return () => clearTimeout(timeout)
-    }, [galleryRowRef.current])
+        }, 5000);
+        return () => clearTimeout(timeout);
+    }, [galleryRowRef.current]);
 
 
 
@@ -315,35 +200,5 @@ function GalleryRow({ images, spacing, end }) {
                 ))}
             </Stack>
         </Box>
-    )
-}
-
-
-function PortfolioIcon({ icon, size, title }) {
-    size = size || '50px'
-
-    return (
-        <Stack>
-            <Icon
-                sx={{
-                    width: size,
-                    height: size,
-                    zIndex: 0,
-                    marginBottom: 0.5,
-                    opacity: 0.7,
-                    ':hover': { opacity: 1 }
-                }}
-            >
-                <img src={icon} height={size} width={size} />
-            </Icon>
-            <Typography
-                fontFamily={'Space Mono'}
-                variant={'caption'}
-                align={'center'}
-                sx={{ userSelect: 'none' }}
-            >
-                {title}
-            </Typography>
-        </Stack>
-    )
+    );
 }

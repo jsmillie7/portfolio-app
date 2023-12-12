@@ -22,6 +22,7 @@ import ProjectNotFound from "./Components/Projects/ProjectNotFound";
 import CloudSim from "./Components/Projects/CloudSim/CloudSim";
 import './App.css';
 import CopyRight from "./Components/shared/Copyright";
+import Transcribe from "./Components/Projects/Transcribe/Transcribe";
 
 // const monospaceFont =  "'Space Mono', sans-serif";
 
@@ -84,7 +85,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = 'v0.6.4';
+let appVersion = 'v0.6.5';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -130,6 +131,7 @@ export default function App() {
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/geomodeling" element={<Geomodeling />} />
                 <Route path="/projects/cloudsim" element={<CloudSim />} />
+                <Route path="/projects/transcribe" element={<Transcribe />} />
                 <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
               </HashRouter>

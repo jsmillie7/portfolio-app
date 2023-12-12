@@ -5,6 +5,7 @@ import topoImg from '../../images/topo.png'
 import geoMtnImg from '../../images/mtn.jpg'
 import laserImg from '../../images/laser.jpg'
 import dashboardImg from '../../images/cloudsim.png'
+import transcribe from '../Projects/Transcribe/images/transcribe_dashboard_hero.png'
 // import dashboardImg from './CloudSim/images/dashboard.png'
 import { useContext, useState } from "react";
 import { AppContext } from "../../App";
@@ -55,6 +56,12 @@ export function ProjectsGrid({ maxProjects }) {
             desc: 'Building an accurate 2-axis GRBL-based laser cutter on a budget',
             img: laserImg,
             link: '/projects/laser'
+        },
+        {
+            title: 'transcribe',
+            desc: 'Desktop application for transcribing audio files on the cloud',
+            img: transcribe,
+            link: '/projects/transcribe'
         },
     ]
 
