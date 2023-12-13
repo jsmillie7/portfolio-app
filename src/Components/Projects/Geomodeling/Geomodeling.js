@@ -13,6 +13,7 @@ import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { coordNt, getCoords, linEqNt, loadFile } from "./pythonSnippets";
 import ProjectBody from "../Common/ProbjectBody";
 import ProjectTitle from "../Common/ProjectTitle";
+import ProjectsReturnButton from "../Common/ProjectsReturnBtn";
 
 
 export default function Geomodeling() {
@@ -184,6 +185,7 @@ hello_world()`;
                     </SyntaxHighlighter>
                 </Box>
             </ProjectBody>
+            <ProjectsReturnButton />
         </Box>
     );
 }

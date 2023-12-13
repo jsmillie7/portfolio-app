@@ -24,8 +24,8 @@ export default function Projects() {
                 </Typography>
             </Hero>
             <Box
-                height={'200vh'}
-                width={'100vw'}
+                // height={'200vh'}
+                width={'100%'}
             >
                 <Container maxWidth={'lg'} sx={{ paddingY: 4 }}>
                     <ProjectsGrid />

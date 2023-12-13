@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import ProjectsReturnButton from "./Common/ProjectsReturnBtn";
 
 
 export default function ProjectNotFound() {
@@ -20,13 +21,7 @@ export default function ProjectNotFound() {
                 <Typography variant="h6" gutterBottom>
                     Requested Project not Found
                 </Typography>
-                <Button 
-                    sx={{textTransform: 'none'}} 
-                    variant={'outlined'}
-                    onClick={() => navigate('/projects')}
-                >
-                    Return  to Projects
-                </Button>
+                <ProjectsReturnButton />
             </Box>
     )
 }
