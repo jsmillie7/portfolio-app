@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.7541bd27.css",
-    "main.js": "/static/js/main.971d2668.js",
+    "main.js": "/static/js/main.07a99937.js",
     "static/media/path.png": "/static/media/path.d3e1f113eca7854a3060.png",
     "static/media/usgs.png": "/static/media/usgs.cb4d8f9e700e3116d359.png",
     "static/media/mtwerner.jpg": "/static/media/mtwerner.3c370f770bc289949c6a.jpg",
     "static/media/header.png": "/static/media/header.a5fde4eeb72d07e71df3.png",
+    "static/media/techx.svg": "/static/media/techx.d1d3730cac887562efe86babc5f5a4e0.svg",
     "static/media/transcribe_dashboard.png": "/static/media/transcribe_dashboard.a8e383236d53d8736f0e.png",
     "static/media/laser.jpg": "/static/media/laser.2b9d7e326bd4eeb44088.jpg",
     "static/media/d.png": "/static/media/d.2fffd3ca47e7dcdfb786.png",
@@ -17,10 +18,12 @@
     "static/media/cloudsim.png": "/static/media/cloudsim.350d8f07f04ad927f9a9.png",
     "static/media/c.png": "/static/media/c.b51722087c0285845d23.png",
     "static/media/topo.png": "/static/media/topo.684928c6dd791afe1081.png",
-    "static/media/buffs.svg": "/static/media/buffs.8b04f0114908928f15ebe76cce8a46e3.svg",
+    "static/media/buffs.svg": "/static/media/buffs.a7c8efba3b16c066d1f2bc739c514999.svg",
     "static/media/aws.svg": "/static/media/aws.f8910504ba833c01d55bd69223f125fe.svg",
     "static/media/electron.svg": "/static/media/electron.9debe94528b8e0526456387231404856.svg",
     "static/media/typescript.svg": "/static/media/typescript.b66b6002fe6d2e3782f97c928140fb55.svg",
+    "static/media/eurofins.svg": "/static/media/eurofins.fc06adc3550351f05007b0cd3d995df2.svg",
+    "static/media/bash.svg": "/static/media/bash.c234c264ffbc1016587a8a17e2e4d29b.svg",
     "static/media/node.svg": "/static/media/node.14454de8d87cf28e65c1eeef3a051367.svg",
     "static/media/python.svg": "/static/media/python.11efb6a7cbc9f60f00b9c4edcc8fcf47.svg",
     "static/media/python2.svg": "/static/media/python2.a567787d92c90065f55c898e15d5f263.svg",
@@ -28,10 +31,10 @@
     "static/media/react.svg": "/static/media/react.13aa0b501e19e6878890ea9a2ea44466.svg",
     "index.html": "/index.html",
     "main.7541bd27.css.map": "/static/css/main.7541bd27.css.map",
-    "main.971d2668.js.map": "/static/js/main.971d2668.js.map"
+    "main.07a99937.js.map": "/static/js/main.07a99937.js.map"
   },
   "entrypoints": [
     "static/css/main.7541bd27.css",
-    "static/js/main.971d2668.js"
+    "static/js/main.07a99937.js"
   ]
 }
