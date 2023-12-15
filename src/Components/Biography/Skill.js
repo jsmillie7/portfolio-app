@@ -6,6 +6,7 @@ export default function Skill(props) {
     const iconSize = props.iconSize || 80
     const exitOpacity = props.exitOpacity || '50%'
     const enterOpacity = props.enterOpacity || '100%'
+    const width = props.width || '300px'
 
     return (
         <Box
@@ -13,7 +14,7 @@ export default function Skill(props) {
             flexDirection={'column'}
             alignItems={'center'}
             justifyContent={'center'}
-            width={'300px'}
+            width={width}
             background={'background.default'}
             border={'1.5px solid #393E46'}
             borderRadius={'5px'}

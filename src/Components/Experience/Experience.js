@@ -69,26 +69,24 @@ export default function Experience() {
                     justifyContent={'flex-start'}
                     alignItems={'center'}
                     overflow={'auto'}
-                    gap={0.5}
+                    gap={1}
                     maxWidth={'100%'}
-                    paddingX={'52.5px'}
-                    // paddingY={'15px'}
+                    // paddingX={'52.5px'}
+                    paddingX={'50vw'}
                     sx={{ scrollSnapType: 'x mandatory' }}
-                    // sx={{scroll-snap-type: x mandatory;}}
                     className={"gallery"}
                 >
                     {experiences.map((skill, index) => {
                         if (index % 2 === 0) {
                             return (
-                                <Box
-                                    // border={'1px solid lime'}
-                                    // sx={{scrollSnapAlign: 'center'}}
+                                <Box 
                                     sx={{ scrollSnapAlign: 'center' }}
                                 >
                                     <Skill
                                         skill={skill}
                                         iconSize={120}
                                         exitOpacity={'100%'}
+                                        width={isMobile ? '85vw' : '75vw'}
                                     />
                                 </Box>
                             );
@@ -100,8 +98,6 @@ export default function Experience() {
                                     display={'flex'}
                                     alignItems={'center'}
                                     justifyContent={'center'}
-                                // sx={{scrollSnapAlign:  'center'}}
-
                                 >
                                     {skill}
                                 </Box>
