@@ -3,9 +3,9 @@ import { useState } from "react";
 
 export default function Skill(props) {
     const skill = props.skill
-    const iconSize = 80
-    const exitOpacity = '50%'
-    const enterOpacity = '100%'
+    const iconSize = props.iconSize || 80
+    const exitOpacity = props.exitOpacity || '50%'
+    const enterOpacity = props.enterOpacity || '100%'
 
     return (
         <Box
@@ -21,7 +21,7 @@ export default function Skill(props) {
             sx={{
                 opacity: exitOpacity,
                 ':hover': {
-                    opacity: enterOpacity
+                    opacity: enterOpacity,
                 }
             }}
         >
@@ -38,7 +38,7 @@ export default function Skill(props) {
                         height: iconSize,
                         position: 'relative',
                         zIndex: 0,
-                        userSelect: 'none'
+                        userSelect: 'none',
                     }}
                 >
                     <img src={skill.icon} height={iconSize} width={iconSize} style={{userSelect: 'none'}}/>

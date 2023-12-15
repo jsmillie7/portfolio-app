@@ -31,7 +31,7 @@ export default function ProjectsHomePanel() {
                     </Typography>
                 </Box>
 
-                <ProjectsGrid maxProjects={2} />
+                <ProjectsGrid maxProjects={4} />
                 <Divider sx={{ marginY: 2 }}>
                     <Button
                         size={'large'}

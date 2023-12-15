@@ -9,6 +9,7 @@ import Contact from "./Components/Contact/Contact"
 import Dummy from "./Components/Dummy/Dummy";
 import Biography from './Components/Biography/Biography';
 import ProjectsHomePanel from './Components/Projects/ProjectsHomePanel';
+import Experience from './Components/Experience/Experience';
 
 let pages = [
     {
@@ -30,7 +31,7 @@ let pages = [
         urlName: "work",
         dispName: "Work",
         icon: <WorkOutlineOutlinedIcon fontSize={"medium"}/>,
-        component: Dummy
+        component: Experience
     },
     {
         index: 3,

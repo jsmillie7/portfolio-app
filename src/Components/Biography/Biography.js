@@ -6,6 +6,7 @@ import pythonLogo from './assets/python2.svg'
 import reactLogo from './assets/react.svg'
 import nodeLogo from './assets/node.svg'
 import buffsLogo from './assets/buffs.svg'
+import bashLogo from './assets/bash.svg'
 import awsLogo from './assets/aws.svg'
 import electronLogo from './assets/electron.svg'
 import Skill from './Skill'
@@ -28,15 +29,20 @@ export default function Biography() {
     const iconSize = 80
 
     const skills = [
-        {
-            title: 'Bachelor of Arts, Physics',
-            subtitle: <>University of Colorado <br/>Boulder, CO</>,
-            icon: buffsLogo
-        },
+        // {
+        //     title: 'Bachelor of Arts, Physics',
+        //     subtitle: <>University of Colorado <br/>Boulder, CO</>,
+        //     icon: buffsLogo
+        // },
         {
             title: 'Python',
             subtitle: 'Package development, product testing, UX/UI, web frameworks & task automation.',
             icon: pythonLogo
+        },
+        {
+            title: 'Bash',
+            subtitle: 'Scripting, creating and running command line utilities, task automation and system configuration',
+            icon: bashLogo
         },
         {
             title: 'Node.js',
@@ -159,9 +165,6 @@ export default function Biography() {
                         Skills & Expertise
                     </Typography>
                 </Box>
-                {/* <Typography align="center" variant="h4" gutterBottom fontWeight={'200'}>
-                    
-                </Typography> */}
                     <Grid
                         container
                         direction="row"
