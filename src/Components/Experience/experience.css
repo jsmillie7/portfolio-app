@@ -1,3 +1,23 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+.cred {
+    font-family: 'Space Mono', monospace;
+    background-color: #393E46;
+    padding: 0px 4px;
+}
+
+.experience {
+    scroll-snap-align: center;
+}
+
 .gallery {
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
