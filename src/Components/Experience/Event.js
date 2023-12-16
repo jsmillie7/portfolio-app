@@ -1,6 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import pathSvg from './images/path.svg';
+import { createContext, useContext, useEffect, useState } from "react";
 
+
+const EventContext = createContext();
 
 export default function Event({
     icon,
@@ -8,66 +11,84 @@ export default function Event({
     location,
     children
 }) {
+    const [smallWindow, setSmallWindow] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            setSmallWindow(window.innerWidth < 800);
+        }, false);
+
+        return () => window.removeEventListener('resize', () => null);
+    }, [smallWindow]);
+
+    const contextVals = { smallWindow };
 
     return (
-        <Box
-            border={'1px solid #393E46'}
-            borderRadius={'1rem'}
-            width={'70vw'}
-            height={'70vh'}
-            display={'flex'}
-            flexDirection={'row'}
-            padding={'1rem'}
-            className="experience"
-            flexShrink={0}
-        >
+        <EventContext.Provider value={{ smallWindow }}>
             <Box
-                borderRight={'1px solid #393E46'}
-                width={'33%'}
-                paddingRight={'1rem'}
-                display={'flex'}
-                flexDirection={'column'}
-                justifyContent={'center'}
-                gap={'2rem'}
+                id={'event-container'}
+                border={'1px solid #393E46'}
+                borderRadius={'1rem'}
+                padding={'1rem'}
+                width={smallWindow ? '90vw' : '70vw'}
+                height={smallWindow ? '85vh' : '70vh'}
+                className={smallWindow ? 'experience col' : 'experience row'}
+                flexShrink={0}
             >
                 <Box
-                    width={'100%'}
-                    // height={'30%'}
-                    display={'flex'}
+                    id={'event-title-panel'}
+                    borderRight={smallWindow ? '' : '1px solid #393E46'}
+                    borderBottom={smallWindow ? '1px solid #393E46' : ''}
+                    width={smallWindow ? '100%' : '35%'}
+                    paddingRight={smallWindow ? 0 : '1rem'}
+                    paddingBottom={smallWindow ? '1rem' : 0}
+                    className={smallWindow ? 'row' : 'col'}
                     justifyContent={'center'}
                     alignItems={'center'}
+                    gap={smallWindow ? '0.5rem' : '2rem'}
                 >
-                    <img src={icon} alt='' height={'100%'} style={{ maxWidth: '80%' }} />
+                    <Box
+                        id={'event-title-panel-logo'}
+                        flex={smallWindow ? 0.3 : 0}
+                        display={'flex'}
+                        justifyContent={'center'}
+                        alignItems={'center'}
+                        // border={'1px solid green'}
+                    >
+                        <img src={icon} alt='' height={'100%'} style={{ maxWidth: smallWindow ? '100%' : '80%' }} />
+                    </Box>
+                    <Box
+                        id={'event-title-panel-text'}
+                        flex={smallWindow ? 1 : 0}
+                    >
+                        <Typography
+                            align={'center'}
+                            variant={smallWindow ? 'h6' : 'h5'}
+                        >
+                            {title}
+                        </Typography>
+                        <Typography
+                            align={'center'}
+                            variant={smallWindow ? 'body1' : 'h6'}
+                        >
+                            {location}
+                        </Typography>
+                    </Box>
                 </Box>
                 <Box
-                    width={'100%'}
+                    id={'event-details-panel'}
+                    marginLeft={smallWindow ? '' : '1rem'}
+                    marginTop={smallWindow ? '1rem' : ''}
+                    flex={1}
+                    className={'col'}
+                    justifyContent={'space-between'}
+                    alignItems={'flex-start'}
+                    gap={'1rem'}
                 >
-                    <Typography
-                        align={'center'}
-                        variant={'h5'}
-                    >
-                        {title}
-                    </Typography>
-                    <Typography
-                        align={'center'}
-                        variant={'h6'}
-                    >
-                        {location}
-                    </Typography>
+                    {children}
                 </Box>
             </Box>
-            <Box
-                marginLeft={'1rem'}
-                flex={1}
-                display={'flex'}
-                flexDirection={'column'}
-                justifyContent={'space-between'}
-                alignItems={'flex-start'}
-                gap={'1rem'}
-            >
-                {children}
-            </Box>
-        </Box>
+        </EventContext.Provider>
     );
 }
 
@@ -88,13 +109,14 @@ export function EventSeparator() {
 }
 
 export function EventTitle({ title, subtitle }) {
+    const { smallWindow } = useContext(EventContext);
 
     return (
         <Box>
-            <Typography variant="h5">
+            <Typography variant={smallWindow ? 'h6' : 'h5'}>
                 {title}
             </Typography>
-            <Typography variant="body1">
+            <Typography variant={smallWindow ? 'body2' : 'body1'}>
                 {subtitle}
             </Typography>
         </Box>

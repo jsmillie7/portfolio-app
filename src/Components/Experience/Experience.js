@@ -132,7 +132,7 @@ export default function Experience() {
                     <EventSeparator />
                     <Event
                         icon={eurofinsLogo}
-                        title={'Eurofins Food Integrity & Innovation'}
+                        title={'Eurofins FII'}
                         location={'Boulder, CO'}
                     >
                         <EventTitle 
