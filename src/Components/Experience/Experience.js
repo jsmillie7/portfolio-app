@@ -65,7 +65,7 @@ export default function Experience() {
                     gap={'10px'}
                     maxWidth={'100%'}
                     paddingX={'15vw'}
-                    paddingRight={'50vw'}
+                    // paddingRight={'50vw'}
                     sx={{ scrollSnapType: 'x mandatory' }}
                     className={"gallery"}
                 >
