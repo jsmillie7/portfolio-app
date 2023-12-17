@@ -6,24 +6,28 @@ import techxLogo from './images/techx.svg';
 import eurofinsLogo from './images/eurofins.svg';
 import './experience.css';
 import Event, { EventSeparator, EventTitle } from "./Event";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 
 
 export default function Experience() {
     const [stepNum, setStepNum] = useState(0);
+    const { smallWindow } = useContext(AppContext);
 
     useEffect(() => {
         const scrollbox = document.getElementById('experience-scroll-box');
         scrollbox.addEventListener('scroll', (event) => {
-            const width = window.innerWidth
-            const smallWindow = width < 900
-            let panelPct = smallWindow ? 0.9 : 0.7
+            const width = window.innerWidth;
+            const smallWindow = width < 900;
+            let panelPct = smallWindow ? 0.9 : 0.7;
             let panelWidth = panelPct * width;
-            let serparatorPlusGap = 120
-            let segment = panelWidth + serparatorPlusGap
-            setStepNum(Math.round(event.target.scrollLeft / segment))
+            let serparatorPlusGap = 120;
+            let segment = panelWidth + serparatorPlusGap;
+            setStepNum(Math.round(event.target.scrollLeft / segment));
         });
-    }, []);
+
+        return () => scrollbox.removeEventListener('scroll', () => null);
+    }, [smallWindow]);
 
     return (
         <div>
@@ -65,10 +69,11 @@ export default function Experience() {
                     gap={'10px'}
                     maxWidth={'100%'}
                     paddingX={'15vw'}
-                    // paddingRight={'50vw'}
                     sx={{ scrollSnapType: 'x mandatory' }}
                     className={"gallery"}
                 >
+
+
                     <Event
                         icon={buffsLogo}
                         title={'University of Colorado'}
@@ -78,9 +83,7 @@ export default function Experience() {
                             title={'Bachelor of Arts - Physics'}
                             subtitle={'Class of 2019'}
                         />
-                        <Box
-                            className="col"
-                        >
+                        <Box className={"col"}>
                             <Typography variant={'h6'}>
                                 Selected Coursework
                             </Typography>

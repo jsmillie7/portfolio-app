@@ -1,32 +1,36 @@
-import {Box, Card, CardContent, Container, Grid, Icon, Stack, SvgIcon, Typography} from "@mui/material";
+import { Box, Card, CardContent, Container, Grid, Icon, Stack, SvgIcon, Typography } from "@mui/material";
 import { BrowserView, MobileView, isMobile } from 'react-device-detect';
-import bioImg from './assets/bio.jpg'
+import bioImg from './assets/bio.jpg';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import pythonLogo from './assets/python2.svg'
-import reactLogo from './assets/react.svg'
-import nodeLogo from './assets/node.svg'
-import buffsLogo from './assets/buffs.svg'
-import bashLogo from './assets/bash.svg'
-import awsLogo from './assets/aws.svg'
-import electronLogo from './assets/electron.svg'
-import Skill from './Skill'
+import pythonLogo from './assets/python2.svg';
+import reactLogo from './assets/react.svg';
+import nodeLogo from './assets/node.svg';
+import buffsLogo from './assets/buffs.svg';
+import bashLogo from './assets/bash.svg';
+import awsLogo from './assets/aws.svg';
+import electronLogo from './assets/electron.svg';
+import Skill from './Skill';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { AppContext } from "../../App";
+import { useContext } from "react";
 
 
 export default function Biography() {
-    
-    function aboutMe () {
+    const { smallWindow } = useContext(AppContext);
+
+
+    function aboutMe() {
         return (
             <Typography paragraph>
-                An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack 
+                An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack
                 development, UX/UI design, and cross-platform desktop application development and testing.
-                I've done a little bit of everything. I enjoy creating robust, yet user-friendly 
+                I've done a little bit of everything. I enjoy creating robust, yet user-friendly
                 experiences with a high attention to detail.
             </Typography>
-        )
+        );
     }
 
-    const iconSize = 80
+    const iconSize = 80;
 
     const skills = [
         // {
@@ -64,25 +68,26 @@ export default function Biography() {
             subtitle: 'Develop, build and deliver  cross-platform JavaScript-based desktop applications',
             icon: electronLogo
         }
-    ]
+    ];
 
     return (
+        <Box
+            alignItems={'center'}
+            className={'col'}
+            sx={{
+                bgcolor: 'Background.default',
+                minHeight: '100vh',
+                width: '100%',
+            }}
+        >
             <Box
-                sx={{
-                    bgcolor: 'Background.default',
-                    minHeight: '100vh',
-                    width: '100%',
-                    // border: 'solid white 5px',
-                }}
-            >
-                <Box
                 sx={{
                     position: 'relative',
                     bgcolor: 'Background.default',
                     width: '100%',
                 }}
             >
-                <img src={bioImg} width={'100%'} style={{display: 'block'}} alt={'James Smillie at Banff National Park'}/>
+                <img src={bioImg} width={'100%'} style={{ display: 'block' }} alt={'James Smillie at Yoho National Park'} />
                 <Box
                     sx={{
                         bgcolor: 'background.light',
@@ -128,24 +133,25 @@ export default function Biography() {
                         </Box>
 
                     </CardContent>
-            </Card>
-        </Box>
+                </Card>
+            </Box>
             <MobileView>
-                <Box 
+                <Box
                     sx={{
-                        bgcolor: 'background.light', 
-                        paddingTop: '20px', 
-                        paddingBottom: '20px', 
-                        paddingX: '20px'}}>
+                        bgcolor: 'background.light',
+                        paddingTop: '20px',
+                        paddingBottom: '20px',
+                        paddingX: '20px'
+                    }}>
                     {aboutMe()}
                 </Box>
             </MobileView>
-            <Container 
-                maxWidth={'lg'} 
+            <Container
+                maxWidth={'lg'}
                 sx={{
                     alignItems: 'center',
                     justifyContent: 'stretch',
-                    marginY: '30px',
+                    // marginY: '30px',
                     flex: 1
                 }}
             >
@@ -165,23 +171,35 @@ export default function Biography() {
                         Skills & Expertise
                     </Typography>
                 </Box>
-                    <Grid
-                        container
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={3}
-                    >
-                        {skills.map((skill, index) => {
-                            return (
-                                <Grid item xs={'auto'} key={index}>
-                                    <Skill skill={skill} />
-                                </Grid>
-                            )
-                        })}
-                    </Grid>
             </Container>
-            
+            <Box width={smallWindow ? '90vw' : '70vw'} >
+                <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="stretch"
+                    spacing={3}
+                >
+                    {skills.map((skill, index) => {
+                        return (
+                            <Grid
+                                item
+                                xs={6}
+                                sm={6}
+                                md={smallWindow ? 6 : 4}
+                                lg={4}
+                                xl={4}
+                                key={index}
+                            >
+                                <Skill skill={skill} />
+                            </Grid>
+                        );
+                    })}
+                </Grid>
+            </Box>
+
+            {/* </Container> */}
+
         </Box>
     );
 }

@@ -1,13 +1,3 @@
-.row {
-    display: flex;
-    flex-direction: row;
-}
-
-.col {
-    display: flex;
-    flex-direction: column;
-}
-
 .cred {
     font-family: 'Space Mono', monospace;
     background-color: #393E46;
@@ -16,13 +6,16 @@
 
 .experience {
     scroll-snap-align: center;
+    border: 1.5px solid #393E46;
+    border-radius: 5px;
+    padding: 1rem;
 }
 
 .gallery {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     overscroll-behavior-x: contain;
 }
 .gallery::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+    display: none; 
 }

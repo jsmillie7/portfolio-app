@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { getPages } from "./pages";
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import MenuItem from "@mui/material/MenuItem"
+import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
@@ -70,7 +70,7 @@ const themeDark = createTheme({
   },
   typography: {
     fontFamily: [
-      'Chivo', 
+      'Chivo',
       'Space Mono'
     ].join(','),
     body1: {
@@ -79,38 +79,47 @@ const themeDark = createTheme({
     button: {
       textTransform: "none"
     }
-    },
+  },
 });
 
 
 export const AppContext = createContext();
 
-let appVersion = '73';
+let appVersion = '74';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0);
   const [showAppBar, setShowAppBar] = useState(false);
-  const pages = getPages()
-  const allPages = useRef(null)
-  allPages.current = []
+  const pages = getPages();
+  const allPages = useRef(null);
+  allPages.current = [];
+  const [smallWindow, setSmallWindow] = useState(window.innerWidth < 900);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setSmallWindow(window.innerWidth < 900);
+    }, false);
+
+    return () => window.removeEventListener('resize', () => null);
+  }, [smallWindow]);
 
 
   useEffect(() => {
-    console.log(currentPage)
-  }, [currentPage])
+    console.log(currentPage);
+  }, [currentPage]);
 
   function handleChange(newPage) {
-    const element = document.getElementById(pages[newPage].urlName)
+    const element = document.getElementById(pages[newPage].urlName);
     setTimeout(() => {
-      element.scrollIntoView({ block: 'start', behavior: 'smooth' })
-    }, 50)
+      element.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    }, 50);
   }
 
   const appVars = useMemo(() => ({
     pages, currentPage, setCurrentPage, handleChange, isMobile, allPages,
-    showAppBar, setShowAppBar,
-  }), [currentPage, isMobile, showAppBar])
+    showAppBar, setShowAppBar, smallWindow
+  }), [currentPage, isMobile, showAppBar, smallWindow]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -134,8 +143,8 @@ export default function App() {
                 <Route path="/projects/transcribe" element={<Transcribe />} />
                 <Route path="/projects/*" element={<ProjectNotFound />} />
               </Routes>
-              </HashRouter>
-              <CopyRight/>
+            </HashRouter>
+            <CopyRight />
           </Box>
 
           {/* TODO: Remove the following block before production */}
@@ -170,13 +179,13 @@ function HandleScroll() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  return null
+  return null;
 }
 
 
 function DrawerItem(props) {
-  const [showText, setShowText] = useState(false)
-  const { currentPage, setCurrentPage, isMobile } = useContext(AppContext)
+  const [showText, setShowText] = useState(false);
+  const { currentPage, setCurrentPage, isMobile } = useContext(AppContext);
 
   return (
     <MenuItem
@@ -208,5 +217,5 @@ function DrawerItem(props) {
         </ListItemText>
       </Collapse>
     </MenuItem>
-  )
+  );
 }

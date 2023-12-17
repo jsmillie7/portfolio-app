@@ -1,0 +1,17 @@
+
+.skill-container {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #393E46;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.skill-icon {
+    opacity: 50%;
+}
+
+.skill-container:hover .skill-icon {
+    opacity: 100%;
+}

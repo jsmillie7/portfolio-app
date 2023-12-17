@@ -2,6 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import pathSvg from './images/path.svg';
 import { createContext, useContext, useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
+import { AppContext } from "../../App";
 
 
 const EventContext = createContext();
@@ -12,22 +13,14 @@ export default function Event({
     location,
     children
 }) {
-    const [smallWindow, setSmallWindow] = useState(window.innerWidth < 900);
-
-    useEffect(() => {
-        window.addEventListener("resize", () => {
-            setSmallWindow(window.innerWidth < 900);
-        }, false);
-
-        return () => window.removeEventListener('resize', () => null);
-    }, [smallWindow]);
+    const { smallWindow } = useContext(AppContext);
 
     return (
         <EventContext.Provider value={{ smallWindow }}>
             <Box
                 id={'event-container'}
                 border={'1px solid #393E46'}
-                borderRadius={'1rem'}
+                borderRadius={'5px'}
                 padding={'1rem'}
                 width={smallWindow ? '90vw' : '70vw'}
                 height={smallWindow ? '75vh' : '70vh'}
@@ -52,7 +45,6 @@ export default function Event({
                         display={'flex'}
                         justifyContent={'center'}
                         alignItems={'center'}
-                        // border={'1px solid green'}
                     >
                         <img src={icon} alt='' height={'100%'} style={{ maxWidth: smallWindow ? '100%' : '80%' }} />
                     </Box>
@@ -83,6 +75,7 @@ export default function Event({
                     justifyContent={'space-between'}
                     alignItems={'flex-start'}
                     gap={'1rem'}
+                    overflow={'auto'}
                 >
                     {children}
                 </Box>
