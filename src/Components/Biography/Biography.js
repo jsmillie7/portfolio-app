@@ -20,15 +20,22 @@ export default function Biography() {
     const { smallWindow } = useContext(AppContext);
 
 
-    function aboutMe() {
+    function AboutMe({ display, BoxProps }) {
         return (
-            <Typography paragraph>
-                An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack
-                development, UX/UI design, and cross-platform desktop application development, testing and
-                building via CI/CD pipelines.
-                I've done a little bit of everything. I enjoy creating robust, yet user-friendly
-                experiences with a high attention to detail.
-            </Typography>
+            <Box
+                display={display ? '' : 'none'}
+                {...BoxProps}
+            >
+                <Typography paragraph>
+                    An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack
+                    development, UX/UI design, and cross-platform desktop application development, testing and
+                    building via CI/CD pipelines.
+                </Typography>
+                <Typography paragraph>
+                    I've done a little bit of everything. I enjoy creating robust, yet user-friendly
+                    experiences with a high attention to detail.
+                </Typography>
+            </Box>
         );
     }
 
@@ -125,56 +132,50 @@ export default function Biography() {
                             <Typography variant={'h4'} gutterBottom color={'text.secondary'} fontWeight={'bold'} fontFamily={'Chivo'}>
                                 James Smillie.
                             </Typography>
-                            <BrowserView>
-                                {aboutMe()}
-                            </BrowserView>
+                            <AboutMe display={!smallWindow} />
                         </Box>
 
                     </CardContent>
                 </Card>
             </Box>
-            <MobileView>
-                <Box
-                    sx={{
-                        bgcolor: 'background.light',
-                        paddingTop: '20px',
-                        paddingBottom: '20px',
-                        paddingX: '20px'
-                    }}>
-                    {aboutMe()}
-                </Box>
-            </MobileView>
+            <AboutMe
+                display={smallWindow}
+                BoxProps={{
+                    backgroundColor: 'background.light',
+                    padding: '1rem'
+                }}
+            />
             <SectionTitle title={'Skills & Expertise'} />
-            <Box 
+            <Box
                 display={'flex'}
                 width={'100%'}
                 justifyContent={'center'}
             >
-            <Box width={smallWindow ? '90vw' : '70vw'} >
-                <Grid
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="stretch"
-                    spacing={3}
-                >
-                    {skills.map((skill, index) => {
-                        return (
-                            <Grid
-                                item
-                                xs={6}
-                                sm={6}
-                                md={smallWindow ? 6 : 4}
-                                lg={4}
-                                xl={4}
-                                key={index}
-                            >
-                                <Skill skill={skill} />
-                            </Grid>
-                        );
-                    })}
-                </Grid>
-            </Box>
+                <Box width={smallWindow ? '90vw' : '70vw'} >
+                    <Grid
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="stretch"
+                        spacing={3}
+                    >
+                        {skills.map((skill, index) => {
+                            return (
+                                <Grid
+                                    item
+                                    xs={6}
+                                    sm={6}
+                                    md={smallWindow ? 6 : 4}
+                                    lg={4}
+                                    xl={4}
+                                    key={index}
+                                >
+                                    <Skill skill={skill} />
+                                </Grid>
+                            );
+                        })}
+                    </Grid>
+                </Box>
             </Box>
 
             {/* </Container> */}
