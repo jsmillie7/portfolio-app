@@ -114,3 +114,17 @@ export function EventTitle({ title, subtitle }) {
         </Box>
     );
 }
+
+export function EventBody({children}) {
+    return (
+        <Box 
+            className={"col"} 
+            justifyContent={'space-between'}
+            height={'100%'}
+            width={'100%'}
+            overflow={'auto'}
+        >
+            {children}
+        </Box>
+    )
+}

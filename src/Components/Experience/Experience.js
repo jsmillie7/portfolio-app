@@ -5,7 +5,7 @@ import buffsLogo from '../Biography/assets/buffs.svg';
 import techxLogo from './images/techx.svg';
 import eurofinsLogo from './images/eurofins.svg';
 import './experience.css';
-import Event, { EventSeparator, EventTitle } from "./Event";
+import Event, { EventBody, EventSeparator, EventTitle } from "./Event";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 
@@ -79,11 +79,12 @@ export default function Experience() {
                         title={'University of Colorado'}
                         location={'Boulder, CO'}
                     >
+                        <EventBody>
                         <EventTitle
                             title={'Bachelor of Arts - Physics'}
                             subtitle={'Class of 2019'}
                         />
-                        <Box className={"col"}>
+                        <Box className={'col'}>
                             <Typography variant={'h6'}>
                                 Selected Coursework
                             </Typography>
@@ -119,6 +120,7 @@ export default function Experience() {
                                 Verify Here
                             </Button>
                         </Box>
+                        </EventBody>
                     </Event>
                     <EventSeparator />
                     <Event

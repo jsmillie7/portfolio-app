@@ -85,7 +85,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = '74';
+let appVersion = '75';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -158,7 +158,7 @@ export default function App() {
             variant={'body1'}
             color={'error'}
           >
-            Development Version {appVersion}
+            DEV v{appVersion}
           </Typography>
           {/* End of Remove */}
 
