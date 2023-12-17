@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import pathSvg from './images/path.svg';
 import { createContext, useContext, useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 
 const EventContext = createContext();
@@ -15,13 +16,11 @@ export default function Event({
 
     useEffect(() => {
         window.addEventListener("resize", () => {
-            setSmallWindow(window.innerWidth < 800);
+            setSmallWindow(window.innerWidth < 900);
         }, false);
 
         return () => window.removeEventListener('resize', () => null);
     }, [smallWindow]);
-
-    const contextVals = { smallWindow };
 
     return (
         <EventContext.Provider value={{ smallWindow }}>
@@ -31,7 +30,7 @@ export default function Event({
                 borderRadius={'1rem'}
                 padding={'1rem'}
                 width={smallWindow ? '90vw' : '70vw'}
-                height={smallWindow ? '85vh' : '70vh'}
+                height={smallWindow ? '75vh' : '70vh'}
                 className={smallWindow ? 'experience col' : 'experience row'}
                 flexShrink={0}
             >
