@@ -12,7 +12,7 @@ export default function Event({
     location,
     children
 }) {
-    const [smallWindow, setSmallWindow] = useState(false);
+    const [smallWindow, setSmallWindow] = useState(window.innerWidth < 900);
 
     useEffect(() => {
         window.addEventListener("resize", () => {

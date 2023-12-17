@@ -85,7 +85,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = '71';
+let appVersion = '72';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
