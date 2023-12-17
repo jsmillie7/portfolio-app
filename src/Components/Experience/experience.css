@@ -11,11 +11,20 @@
     padding: 1rem;
 }
 
-.gallery {
+.experience-scroll-box {
+    width: min-content;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto;
+    gap: 10px;
+    max-width: 100%;
+    padding: 0vw 15vw;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    overscroll-behavior-x: contain;
 }
-.gallery::-webkit-scrollbar { 
+
+.experience-scroll-box::-webkit-scrollbar { 
     display: none; 
 }

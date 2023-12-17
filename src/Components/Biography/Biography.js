@@ -13,6 +13,7 @@ import Skill from './Skill';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { AppContext } from "../../App";
 import { useContext } from "react";
+import SectionTitle from "../shared/SectionTitle";
 
 
 export default function Biography() {
@@ -23,7 +24,8 @@ export default function Biography() {
         return (
             <Typography paragraph>
                 An expert in Python with a diverse skillset including: cloud computing, DevOps, full-stack
-                development, UX/UI design, and cross-platform desktop application development and testing.
+                development, UX/UI design, and cross-platform desktop application development, testing and
+                building via CI/CD pipelines.
                 I've done a little bit of everything. I enjoy creating robust, yet user-friendly
                 experiences with a high attention to detail.
             </Typography>
@@ -72,13 +74,9 @@ export default function Biography() {
 
     return (
         <Box
-            alignItems={'center'}
             className={'col'}
-            sx={{
-                bgcolor: 'Background.default',
-                minHeight: '100vh',
-                width: '100%',
-            }}
+            backgroundColor={'Background.default'}
+            width={'100%'}
         >
             <Box
                 sx={{
@@ -146,32 +144,12 @@ export default function Biography() {
                     {aboutMe()}
                 </Box>
             </MobileView>
-            <Container
-                maxWidth={'lg'}
-                sx={{
-                    alignItems: 'center',
-                    justifyContent: 'stretch',
-                    // marginY: '30px',
-                    flex: 1
-                }}
+            <SectionTitle title={'Skills & Expertise'} />
+            <Box 
+                display={'flex'}
+                width={'100%'}
+                justifyContent={'center'}
             >
-                <Box
-                    display={'flex'}
-                    flexDirection={'row'}
-                    alignItems={'center'}
-                    paddingY={2}
-                    paddingLeft={isMobile ? 0 : 2}
-                >
-                    <KeyboardArrowRightIcon fontSize={'large'} />
-                    <Typography
-                        variant="h4"
-                        fontWeight={'200'}
-                        noWrap
-                    >
-                        Skills & Expertise
-                    </Typography>
-                </Box>
-            </Container>
             <Box width={smallWindow ? '90vw' : '70vw'} >
                 <Grid
                     container
@@ -196,6 +174,7 @@ export default function Biography() {
                         );
                     })}
                 </Grid>
+            </Box>
             </Box>
 
             {/* </Container> */}

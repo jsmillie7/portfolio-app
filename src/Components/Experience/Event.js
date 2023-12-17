@@ -46,7 +46,15 @@ export default function Event({
                         justifyContent={'center'}
                         alignItems={'center'}
                     >
-                        <img src={icon} alt='' height={'100%'} style={{ maxWidth: smallWindow ? '100%' : '80%' }} />
+                        <img
+                            src={icon}
+                            alt=''
+                            height={'100%'}
+                            style={{
+                                maxWidth: smallWindow ? '100%' : '80%',
+                                opacity: '70%'
+                            }}
+                        />
                     </Box>
                     <Box
                         id={'event-title-panel-text'}
@@ -115,10 +123,10 @@ export function EventTitle({ title, subtitle }) {
     );
 }
 
-export function EventBody({children}) {
+export function EventBody({ children }) {
     return (
-        <Box 
-            className={"col"} 
+        <Box
+            className={"col"}
             justifyContent={'space-between'}
             height={'100%'}
             width={'100%'}
@@ -126,5 +134,5 @@ export function EventBody({children}) {
         >
             {children}
         </Box>
-    )
+    );
 }

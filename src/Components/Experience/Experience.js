@@ -1,5 +1,4 @@
 import { Box, Button, Container, MobileStepper, Typography } from "@mui/material";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { isMobile } from "react-device-detect";
 import buffsLogo from '../Biography/assets/buffs.svg';
 import techxLogo from './images/techx.svg';
@@ -8,6 +7,7 @@ import './experience.css';
 import Event, { EventBody, EventSeparator, EventTitle } from "./Event";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
+import SectionTitle from "../shared/SectionTitle";
 
 
 export default function Experience() {
@@ -30,28 +30,8 @@ export default function Experience() {
     }, [smallWindow]);
 
     return (
-        <div>
-            <Container
-                maxWidth={'lg'}
-                sx={{ marginTop: '30px' }}
-            >
-                <Box
-                    id={'experience-title'}
-                    display={'flex'}
-                    flexDirection={'row'}
-                    alignItems={'center'}
-                    paddingY={2}
-                    paddingLeft={isMobile ? 0 : 2}
-                >
-                    <KeyboardArrowRightIcon fontSize={'large'} />
-                    <Typography
-                        variant="h4"
-                        fontWeight={'200'}
-                    >
-                        Education & Experience
-                    </Typography>
-                </Box>
-            </Container>
+        <div> 
+            <SectionTitle title={'Education & Experience'} />
             <Box
                 id={'experience-body'}
                 display={'flex'}
@@ -60,20 +40,8 @@ export default function Experience() {
             >
                 <Box
                     id={'experience-scroll-box'}
-                    width={'min-content'}
-                    display={'flex'}
-                    flexDirection={'row'}
-                    justifyContent={'flex-start'}
-                    alignItems={'center'}
-                    overflow={'auto'}
-                    gap={'10px'}
-                    maxWidth={'100%'}
-                    paddingX={'15vw'}
-                    sx={{ scrollSnapType: 'x mandatory' }}
-                    className={"gallery"}
+                    className={"row experience-scroll-box"}
                 >
-
-
                     <Event
                         icon={buffsLogo}
                         title={'University of Colorado'}
@@ -161,7 +129,7 @@ export default function Experience() {
             </Box>
             <Box
                 position={'relative'}
-                marginY={'0.5rem'}
+                marginTop={'0.5rem'}
                 display={'flex'}
                 justifyContent={'center'}
             >
