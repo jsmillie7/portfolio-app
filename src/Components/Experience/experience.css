@@ -5,7 +5,6 @@
 }
 
 .experience {
-    scroll-snap-align: center;
     border: 1.5px solid #393E46;
     border-radius: 5px;
     padding: 1rem;
@@ -19,12 +18,5 @@
     gap: 10px;
     max-width: 100%;
     padding: 0vw 15vw;
-    scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.experience-scroll-box::-webkit-scrollbar { 
-    display: none; 
 }

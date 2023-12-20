@@ -19,6 +19,7 @@ import Technology, { PortfolioIcon } from '../Common/Technology';
 import ProjectTitle from '../Common/ProjectTitle';
 import ProjectBody from '../Common/ProbjectBody';
 import ProjectsReturnButton from '../Common/ProjectsReturnBtn';
+import Gallery, { GalleryRow } from '../Common/Gallery';
 
 export default function CloudSim() {
     const { isMobile } = useContext(AppContext);
@@ -35,7 +36,6 @@ export default function CloudSim() {
                     backgroundRepeat: 'no-repeat'
                 }}
             >
-                {/* <Box border={'1px solid red'} height={'100%'} width={'100%'} /> */}
             </Hero>
             <ProjectBody>
                 <ProjectTitle
@@ -106,7 +106,6 @@ export default function CloudSim() {
                         </Typography>
                     </Box>
                 </Stack>
-                {/* </Box> */}
             </ProjectBody>
             <Box
                 width={'100%'}
@@ -124,67 +123,12 @@ export default function CloudSim() {
                 >
                     Gallery
                 </Typography>
-                <Gallery spacing={spacing}>
+                <Gallery>
                     <GalleryRow images={[a, c]} spacing={spacing} />
                     <GalleryRow images={[b, d]} spacing={spacing} end />
                 </Gallery>
             </Box>
             <ProjectsReturnButton />
-        </Box>
-    );
-}
-
-
-function Gallery({ spacing, children }) {
-
-    return (
-        <Box
-            width={'100%'}
-            overflow={'scroll'}
-            marginBottom={spacing}
-        >
-            <Stack direction={'column'} spacing={spacing}>
-                {children}
-            </Stack>
-        </Box>
-
-    );
-}
-
-
-function GalleryRow({ images, spacing, end }) {
-    const galleryRowRef = useRef();
-    end = end || false;
-
-    useEffect(() => {
-        if (!end) return;
-        const timeout = setTimeout(() => {
-            galleryRowRef.current.scrollTo({
-                left: galleryRowRef.current.scrollLeftMax,
-                behavior: 'instant'
-            });
-            // galleryRowRef.current.scrollTo(galleryRowRef.current.scrollLeftMax, 0)
-        }, 5000);
-        return () => clearTimeout(timeout);
-    }, [galleryRowRef.current]);
-
-
-
-    return (
-        <Box
-            width={'100%'}
-            overflow={'auto'}
-            ref={galleryRowRef}
-        >
-            <Stack
-                direction={'row'}
-                spacing={spacing}
-                sx={{ width: '125%' }}
-            >
-                {images.map((img, idx) => (
-                    <img key={idx} src={img} style={{ width: `${1 / images.length * 100}%` }} />
-                ))}
-            </Stack>
         </Box>
     );
 }

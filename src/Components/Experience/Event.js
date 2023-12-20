@@ -24,7 +24,7 @@ export default function Event({
                 padding={'1rem'}
                 width={smallWindow ? '90vw' : '70vw'}
                 height={smallWindow ? '75vh' : '70vh'}
-                className={smallWindow ? 'experience col' : 'experience row'}
+                className={smallWindow ? 'experience snap-item col' : 'experience snap-item row'}
                 flexShrink={0}
             >
                 <Box

@@ -40,7 +40,7 @@ export default function Experience() {
             >
                 <Box
                     id={'experience-scroll-box'}
-                    className={"row experience-scroll-box"}
+                    className={"row experience-scroll-box no-scrollbar snap-container"}
                 >
                     <Event
                         icon={buffsLogo}

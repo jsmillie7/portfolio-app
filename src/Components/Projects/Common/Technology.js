@@ -30,7 +30,7 @@ export default function Technology({ icons }) {
                 spacing={4}
                 sx={{ padding: 2 }}
             >
-                {icons.map(icon => (
+                {icons.map((icon, idx) => (
                     <Grid
                         item
                         xs
@@ -39,6 +39,7 @@ export default function Technology({ icons }) {
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}
+                        key={idx}
                     >
                         {icon}
                     </Grid>
