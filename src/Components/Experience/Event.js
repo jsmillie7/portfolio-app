@@ -18,26 +18,12 @@ export default function Event({
     return (
         <EventContext.Provider value={{ smallWindow }}>
             <Box
-                id={'event-container'}
-                border={'1px solid #393E46'}
-                borderRadius={'5px'}
-                padding={'1rem'}
-                width={smallWindow ? '90vw' : '70vw'}
-                height={smallWindow ? '75vh' : '70vh'}
-                className={smallWindow ? 'experience snap-item col' : 'experience snap-item row'}
-                flexShrink={0}
+                id={'experience'}
+                className={`snap-item ${smallWindow ? 'col' : 'row'}`}
             >
                 <Box
                     id={'event-title-panel'}
-                    borderRight={smallWindow ? '' : '1px solid #393E46'}
-                    borderBottom={smallWindow ? '1px solid #393E46' : ''}
-                    width={smallWindow ? '100%' : '35%'}
-                    paddingRight={smallWindow ? 0 : '1rem'}
-                    paddingBottom={smallWindow ? '1rem' : 0}
                     className={smallWindow ? 'row' : 'col'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    gap={smallWindow ? '0.5rem' : '2rem'}
                 >
                     <Box
                         id={'event-title-panel-logo'}
@@ -112,14 +98,16 @@ export function EventSection({ title, subtitle, children }) {
     const { smallWindow } = useContext(EventContext);
 
     return (
-        <Box className="col">
+        <Box className="col" id={'event-section'}>
             <Typography variant={smallWindow ? 'h6' : 'h5'}>
                 {title}
             </Typography>
             <Typography variant={smallWindow ? 'body2' : 'body1'} sx={{ display: !!subtitle ? '' : 'none' }}>
                 {subtitle}
             </Typography>
-            {children}
+            <Box id={'event-section-children'} className="col">
+                {children}
+            </Box>
         </Box>
     );
 }
@@ -132,32 +120,42 @@ export function EventBody({ children }) {
             height={'100%'}
             width={'100%'}
             overflow={'auto'}
-            // gap={'1rem'}
+            gap={'1rem'}
         >
             {children}
         </Box>
     );
 }
 
-export function EventTimeline({ title, subtitle, last, children }) {
+export function EventTimelineBody({ children }) {
+    return (
+        <Box
+            className={"col"}
+            id={'timeline-body'}
+        >
+            {children}
+        </Box>
+    );
+}
+
+export function EventTimeline({ title, subtitle, first, last, children }) {
+    first = !!first || false;
     last = !!last || false;
 
     return (
         <Box
             id={'timeline-container'}
             className="row"
-            // padding={2}
         >
             <Box
                 id={'timeline-connectors'}
                 className={'col'}
-                // alignItems={'center'}
-                // padding={''}
             >
+                <Box id={first ? 'noline' : 'line'} height={'0.5rem'} />
                 <Box id={'circle'} />
-                <Box id={'line'} flex={1} display={last ? 'none' : ''}/>
+                <Box id={'line'} flex={last ? 0 : 1} display={last ? 'none' : ''} />
             </Box>
-            <Box id={'timeline-body'} >
+            <Box id={'timeline-body-section'} paddingBottom={last ? 0 : '1.5rem'}>
                 <EventSection
                     title={title}
                     subtitle={subtitle}

@@ -85,7 +85,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = '79';
+let appVersion = '80';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -127,7 +127,7 @@ export default function App() {
   return (
     <ThemeProvider theme={darkMode ? themeDark : themeLight}>
       <AppContext.Provider value={appVars}>
-        <Box sx={{ height: '100vh' }}>
+        <Box sx={{ height: '100vh' }} className={smallWindow ? 'small-window' : ''}>
           <CssBaseline />
 
 

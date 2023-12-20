@@ -4,7 +4,7 @@ import buffsLogo from '../Biography/assets/buffs.svg';
 import techxLogo from './images/techx.svg';
 import eurofinsLogo from './images/eurofins.svg';
 import './experience.css';
-import Event, { EventBody, EventSeparator, EventSection, EventTimeline } from "./Event";
+import Event, { EventBody, EventSeparator, EventSection, EventTimeline, EventTimelineBody } from "./Event";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import SectionTitle from "../shared/SectionTitle";
@@ -40,7 +40,7 @@ export default function Experience() {
             >
                 <Box
                     id={'experience-scroll-box'}
-                    className={"row experience-scroll-box no-scrollbar snap-container"}
+                    className={"row no-scrollbar snap-container"}
                 >
                     <Event
                         icon={buffsLogo}
@@ -90,7 +90,7 @@ export default function Experience() {
                             </Box>
                         </EventBody>
                     </Event>
-                    <EventSeparator />
+                    {/* <EventSeparator />
                     <Event
                         icon={eurofinsLogo}
                         title={'Eurofins FII'}
@@ -105,7 +105,7 @@ export default function Experience() {
                                 VBA
                             </Box>
                         </EventBody>
-                    </Event>
+                    </Event> */}
                     <EventSeparator />
                     <Event
                         icon={techxLogo}
@@ -113,61 +113,35 @@ export default function Experience() {
                         location={'Boulder, CO'}
                     >
                         <EventBody>
-                            <EventTimeline
-                                title={'Software Developer II'}
-                                subtitle={'September 2022 - Present'}
-                            >
-                                <Box
-                                    // borderLeft={'1px solid grey'}
-                                    // marginLeft={'0.5rem'}
+                            <EventTimelineBody>
+                                <EventTimeline
+                                    title={'Software Developer II'}
+                                    subtitle={'September 2022 - Present'}
+                                    first
                                 >
                                     <ul>
-                                        <li>Cloud Platform Development</li>
+                                        <li>Cloud-based platform for HPC computing</li>
+                                        <li>Automated license generation</li>
                                         <li>Spack for Windows</li>
                                     </ul>
-                                </Box>
-                            </EventTimeline>
-                            <EventTimeline
-                                title={'Software Developer I'}
-                                subtitle={'Jule 2020 - September 2022'}
-                                last
-                            >
-
-                            </EventTimeline>
-                            {/* <EventSection
-                                title={'Software Developer II'}
-                                subtitle={'September 2022 - Present'}
-                            >
-                                <Box
-                                    borderLeft={'1px solid grey'}
-                                    marginLeft={'0.5rem'}
+                                </EventTimeline>
+                                <EventTimeline
+                                    title={'Software Developer I'}
+                                    subtitle={'June 2020 - September 2022'}
+                                    last
                                 >
                                     <ul>
-                                        <li>Cloud Platform Development</li>
-                                        <li>Spack for Windows</li>
+                                        <li>Python-based GUI testing suite</li>
+                                        <li>C++ floating license implementation </li>
                                     </ul>
-                                </Box>
-                            </EventSection>
-                            <EventSection
-                                title={'Software Developer I'}
-                                subtitle={'Jule 2020 - September 2022'}
-                            >
-                                <Box>
-                                    Python
-                                </Box>
-                            </EventSection>
+                                </EventTimeline>
+                            </EventTimelineBody>
                             <EventSection title={'Awards'}>
                                 <ul>
-                                    <li>Software Innovator of the Year - 2023</li>
-                                    <li>Quality Contributer of the Year -2021</li>
+                                    <li>2023 Software Innovator of the Year</li>
+                                    <li>2021 Quality Contributer of the Year</li>
                                 </ul>
-                            </EventSection> */}
-                            {/* <EventSection title={'Awards'}>
-                                <ul>
-                                    <li>Software Innovator of the Year - 2023</li>
-                                    <li>Quality Contributer of the Year -2021</li>
-                                </ul>
-                            </EventSection> */}
+                            </EventSection>
                         </EventBody>
                     </Event>
                 </Box>
