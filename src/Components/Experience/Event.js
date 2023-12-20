@@ -108,17 +108,18 @@ export function EventSeparator() {
     );
 }
 
-export function EventTitle({ title, subtitle }) {
+export function EventSection({ title, subtitle, children }) {
     const { smallWindow } = useContext(EventContext);
 
     return (
-        <Box>
+        <Box className="col">
             <Typography variant={smallWindow ? 'h6' : 'h5'}>
                 {title}
             </Typography>
-            <Typography variant={smallWindow ? 'body2' : 'body1'}>
+            <Typography variant={smallWindow ? 'body2' : 'body1'} sx={{ display: !!subtitle ? '' : 'none' }}>
                 {subtitle}
             </Typography>
+            {children}
         </Box>
     );
 }
@@ -127,12 +128,43 @@ export function EventBody({ children }) {
     return (
         <Box
             className={"col"}
-            justifyContent={'space-between'}
+            justifyContent={'flex-start'}
             height={'100%'}
             width={'100%'}
             overflow={'auto'}
+            // gap={'1rem'}
         >
             {children}
+        </Box>
+    );
+}
+
+export function EventTimeline({ title, subtitle, last, children }) {
+    last = !!last || false;
+
+    return (
+        <Box
+            id={'timeline-container'}
+            className="row"
+            // padding={2}
+        >
+            <Box
+                id={'timeline-connectors'}
+                className={'col'}
+                // alignItems={'center'}
+                // padding={''}
+            >
+                <Box id={'circle'} />
+                <Box id={'line'} flex={1} display={last ? 'none' : ''}/>
+            </Box>
+            <Box id={'timeline-body'} >
+                <EventSection
+                    title={title}
+                    subtitle={subtitle}
+                >
+                    {children}
+                </EventSection>
+            </Box>
         </Box>
     );
 }

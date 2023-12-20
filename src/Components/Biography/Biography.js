@@ -42,11 +42,6 @@ export default function Biography() {
     const iconSize = 80;
 
     const skills = [
-        // {
-        //     title: 'Bachelor of Arts, Physics',
-        //     subtitle: <>University of Colorado <br/>Boulder, CO</>,
-        //     icon: buffsLogo
-        // },
         {
             title: 'Python',
             subtitle: 'Package development, product testing, UX/UI, web frameworks & task automation.',
