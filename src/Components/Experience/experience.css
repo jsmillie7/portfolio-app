@@ -29,18 +29,6 @@
     overscroll-behavior-x: contain;
 }
 
-/* 
-    borderRight={smallWindow ? '' : '1px solid #393E46'}
-    borderBottom={smallWindow ? '1px solid #393E46' : ''}
-    width={smallWindow ? '100%' : '35%'}
-    paddingRight={smallWindow ? 0 : '1rem'}
-    paddingBottom={smallWindow ? '1rem' : 0}
-    className={smallWindow ? 'row' : 'col'}
-    justifyContent={'center'}
-    alignItems={'center'}
-    gap={smallWindow ? '0.5rem' : '2rem'}
-*/
-
 #event-title-panel {
     border-right: 1px solid #393E46;
     border-bottom: none;
@@ -68,9 +56,11 @@
     -moz-border-radius: 25px;
     border-radius: 25px;
     border: 1px solid #B55400;
+    opacity: 75%;
 }
 
 #line {
+    opacity: 75%;
     width: 0;
     border-left: 0.5px solid #B55400;
 }

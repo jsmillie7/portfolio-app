@@ -1,6 +1,23 @@
+#hero-container {
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center;
+  overflow: hidden;
+}
+
+#hero-scroll-hint {
+  position: absolute;
+  bottom: 0.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
 .bounce {
     animation: bounceAnimation 1s ease-out 1s;
-    /* animation: bounceAnimation 1s ease-in-out 1s; */
     animation-iteration-count: 2;
 }
   

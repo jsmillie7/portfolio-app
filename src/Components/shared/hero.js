@@ -1,6 +1,8 @@
+/**
+ * Hero panel used on each page
+ */
 import { Box } from "@mui/material";
-import { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../../App";
+import { useEffect, useRef } from "react";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import './hero.css'
 
@@ -11,11 +13,17 @@ export default function Hero({
     BoxProps,
     children
 }) {
-    const { isMobile } = useContext(AppContext);
     const heroRef = useRef();
     const scrollRef = useRef();
     scale = scale || 1;
     backgroundSize = backgroundSize || 'cover';
+
+    /**
+     * Fix the 100vh issue on mobile by setting the panel height after render.
+     */
+    useEffect(() => {
+        heroRef.current.style.height = `${window.innerHeight}px`
+    }, [])
 
     /**
      * Hook to set the parallax on the scroll of the Home panel
@@ -24,15 +32,6 @@ export default function Hero({
         const origVpHeight = window.innerHeight;
 
         const handleScroll = () => {
-            let height;
-            if (isMobile) {
-                // mobile browsers hide the url bar as you scroll which makes 
-                // the ui twitchy otherwise.
-                height = origVpHeight;
-            } else {
-                // allows for resizing of desktop browser.
-                height = window.innerHeight;
-            }
             const scrollY = window.scrollY;
             const panelHt = origVpHeight - (scale * scrollY);
             const scrollPct = scrollY / origVpHeight;
@@ -43,46 +42,28 @@ export default function Hero({
                 }
             }
         };
-
-        // Add a scroll event listener when the component mounts
         window.addEventListener("scroll", handleScroll);
-
-        // Remove the scroll event listener when the component unmounts
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-
-
     return (
         <Box
             ref={heroRef}
-            height={'100vh'}
-            width={'100vw'}
-            display={'flex'}
-            flexDirection={'column'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            position={'relative'}
+            id={'hero-container'}
+            className={'col'}
             sx={{
                 backgroundImage: `url(${backgroundImage})`,
                 backgroundSize: backgroundSize,
-                backgroundPosition: 'center',
                 ...BoxProps
-                // backgroundRepeat: 'no-repeat'
             }}
-            overflow={'clip'}
             {...BoxProps}
         >
             {children}
             <Box
+                id={'hero-scroll-hint'}
                 ref={scrollRef}
-                position={'absolute'}
-                bottom={'0.5em'}
-                left={'50%'}
-                zIndex={0}
-                sx={{ transform: 'translateX(-50%)' }}
             >
                 <KeyboardDoubleArrowDownIcon
                     fontSize={'large'}
