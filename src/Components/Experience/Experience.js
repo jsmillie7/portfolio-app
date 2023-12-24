@@ -8,6 +8,8 @@ import Event, { EventBody, EventSeparator, EventSection, EventTimeline, EventTim
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../App";
 import SectionTitle from "../shared/SectionTitle";
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import EmojiEventsTwoToneIcon from '@mui/icons-material/EmojiEventsTwoTone';
 
 
 export default function Experience() {
@@ -74,38 +76,59 @@ export default function Experience() {
                                 >
                                     <Box className="col">
                                         <Typography variant="body2" gutterBottom>
-                                            CeDiD: <span className="cred">203I-5FPC-J8E0</span>
+                                            CeDiD:<br /><span className="cred">203I-5FPC-J8E0</span>
                                         </Typography>
                                         <Typography variant="body2">
-                                            Initials: <span className="cred">Ja</span>
+                                            Initials:<br /><span className="cred">Ja</span>
                                         </Typography>
                                     </Box>
+                                    <Button
+                                        onClick={() => window.open('https://reg.colorado.edu/cediploma/', '_blank')}
+                                        variant={'outlined'}
+                                        sx={{ width: 'fit-content' }}
+                                    >
+                                        Verify Here
+                                    </Button>
 
                                 </Box>
-                                <Button
-                                    onClick={() => window.open('https://reg.colorado.edu/cediploma/', '_blank')}
-                                >
-                                    Verify Here
-                                </Button>
+
                             </Box>
                         </EventBody>
                     </Event>
-                    {/* <EventSeparator />
+                    <EventSeparator />
                     <Event
                         icon={eurofinsLogo}
-                        title={'Eurofins FII'}
+                        title={smallWindow ? 'Eurofins FII' : 'Eurofins Food Integrity & Innovation'}
                         location={'Boulder, CO'}
                     >
                         <EventBody>
-                            <EventSection
-                                title={'Quality Coordinator'}
-                                subtitle={'November 2016 - December 2019'}
-                            />
-                            <Box>
-                                VBA
-                            </Box>
+                            <EventTimelineBody>
+                                <EventTimeline
+                                    title={'Quality Coordinator'}
+                                    subtitle={'August 2017 - December 2019'}
+                                    first
+                                >
+                                    <ul>
+                                        <li>performing qa audits on lab standard operating procedures to protect the lab's ISO accreditation</li>
+                                        {/* <li>monitoring and scheduling maintenance on lab equipment</li> */}
+                                        <li>verifying test results and sending lab reports to customers</li>
+                                        <li>manage and dispose of hazardous waste following CDPHE and EPA regulations</li>
+                                        <li>automation of the above tasks using Python and VBA to increase productivity while reducing human error</li>
+                                    </ul>
+                                </EventTimeline>
+                                <EventTimeline
+                                    title={'QA Assistant'}
+                                    subtitle={'November 2016 - July 2017'}
+                                    last
+                                >
+                                    <ul>
+                                        <li>data entry and updating Excel spreadsheets</li>
+                                        <li>basic office tasks like filing, cleaning, shredding and preparing archived documents for long-term storage</li>
+                                    </ul>
+                                </EventTimeline>
+                            </EventTimelineBody>
                         </EventBody>
-                    </Event> */}
+                    </Event>
                     <EventSeparator />
                     <Event
                         icon={techxLogo}
@@ -120,9 +143,8 @@ export default function Experience() {
                                     first
                                 >
                                     <ul>
-                                        <li>Cloud-based platform for HPC computing</li>
-                                        <li>Automated license generation</li>
-                                        <li>Spack for Windows</li>
+                                        <li>Principle developer of a web application for running physics simulations on cloud-based HPC clusters.</li>
+                                        <li>On the team working to support Windows in <a href="https://spack.io" target="_blank">Spack</a>.</li>
                                     </ul>
                                 </EventTimeline>
                                 <EventTimeline
@@ -131,12 +153,14 @@ export default function Experience() {
                                     last
                                 >
                                     <ul>
-                                        <li>Python-based GUI testing suite</li>
-                                        <li>C++ floating license implementation </li>
+                                        <li>Refactored and expanded a python-based GUI testing system up to PEP8 standards.</li>
+                                        <li>Aided in design and implementation of product licensing including floating license capabilities.</li>
                                     </ul>
                                 </EventTimeline>
                             </EventTimelineBody>
-                            <EventSection title={'Awards'}>
+                            <EventSection title={
+                                <span className="row" style={{ gap: '0.5rem', alignItems: 'center', justifyContent: 'flex-start' }}><EmojiEventsTwoToneIcon color="primary" /><>Awards and Recognition</></span>
+                            }>
                                 <ul>
                                     <li>2023 Software Innovator of the Year</li>
                                     <li>2021 Quality Contributer of the Year</li>

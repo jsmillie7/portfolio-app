@@ -85,7 +85,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = '81';
+let appVersion = '82';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -129,8 +129,6 @@ export default function App() {
       <AppContext.Provider value={appVars}>
         <Box sx={{ height: '100vh' }} className={smallWindow ? 'small-window' : ''}>
           <CssBaseline />
-
-
           <Box sx={{ overflowX: 'hidden', overflowY: 'auto', width: '100vw', display: 'flex', flexDirection: "column" }}>
             <HashRouter >
               <PortfolioAppBar />

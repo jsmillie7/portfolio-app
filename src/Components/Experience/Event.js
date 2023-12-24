@@ -37,7 +37,7 @@ export default function Event({
                             alt=''
                             height={'100%'}
                             style={{
-                                maxWidth: smallWindow ? '100%' : '80%',
+                                maxWidth: smallWindow ? '100%' : '70%',
                                 opacity: '70%'
                             }}
                         />
@@ -155,7 +155,9 @@ export function EventTimeline({ title, subtitle, first, last, children }) {
                 <Box id={'circle'} />
                 <Box id={'line'} flex={last ? 0 : 1} display={last ? 'none' : ''} />
             </Box>
-            <Box id={'timeline-body-section'} paddingBottom={last ? 0 : '1.5rem'}>
+            <Box
+                id={'timeline-body-section'}
+            >
                 <EventSection
                     title={title}
                     subtitle={subtitle}
