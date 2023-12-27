@@ -2,9 +2,11 @@
  * Hero panel used on each page
  */
 import { Box } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import './hero.css'
+import { AppContext } from "../../App";
+
 
 export default function Hero({
     backgroundImage,
@@ -13,9 +15,10 @@ export default function Hero({
     BoxProps,
     children
 }) {
+    const {smallWindow} = useContext(AppContext)
     const heroRef = useRef();
     const scrollRef = useRef();
-    scale = scale || 1;
+    scale = smallWindow ? 2 : 1;
     backgroundSize = backgroundSize || 'cover';
 
     /**
@@ -30,14 +33,16 @@ export default function Hero({
      */
     useEffect(() => {
         const origVpHeight = window.innerHeight;
-
         const handleScroll = () => {
+
             const scrollY = window.scrollY;
             const panelHt = origVpHeight - (scale * scrollY);
-            const scrollPct = scrollY / origVpHeight;
+            const scrollPct = (panelHt / origVpHeight);
+
             if (heroRef.current) {
-                if (scrollPct < (1 / (scale + 1)) && panelHt > 0) {
-                    heroRef.current.style.height = `${panelHt}px`;
+                if (scrollPct > 0) {
+                    heroRef.current.style.marginTop = `${scrollY}px`;
+                    heroRef.current.style.height = `${(scrollPct) * origVpHeight}px`;
                     scrollRef.current.style.opacity = `${(panelHt / origVpHeight) ** 3 * 100}%`;
                 }
             }
