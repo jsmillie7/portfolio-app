@@ -54,10 +54,8 @@ export default function Experience() {
                                 title={'Bachelor of Arts - Physics'}
                                 subtitle={'Class of 2019'}
                             />
-                            <Box className={'col'}>
-                                <Typography variant={'h6'}>
-                                    Selected Coursework
-                                </Typography>
+
+                            <EventSection title={'Selected Coursework'}>
                                 <ul>
                                     <li>calculus i, ii & iii</li>
                                     <li>linear algebra & differential equations</li>
@@ -65,23 +63,18 @@ export default function Experience() {
                                     <li>statistical mechanics, scientific computing and statistics</li>
                                     <li>advanced laboratory</li>
                                 </ul>
-                            </Box>
-                            <Box>
-                                <Typography gutterBottom variant={'h6'}>
-                                    Verifiable Credentials
-                                </Typography>
+                            </EventSection>
+                            <EventSection title={'Verifiable Credentials'}>
                                 <Box
                                     className="col"
                                     gap={'1rem'}
                                 >
-                                    <Box className="col">
-                                        <Typography variant="body2" gutterBottom>
-                                            CeDiD:<br /><span className="cred">203I-5FPC-J8E0</span>
-                                        </Typography>
-                                        <Typography variant="body2">
-                                            Initials:<br /><span className="cred">Ja</span>
-                                        </Typography>
-                                    </Box>
+                                    <Typography variant="body2" gutterBottom>
+                                        CeDiD:<br /><span className="cred">203I-5FPC-J8E0</span>
+                                    </Typography>
+                                    <Typography variant="body2">
+                                        Initials:<br /><span className="cred">Ja</span>
+                                    </Typography>
                                     <Button
                                         onClick={() => window.open('https://reg.colorado.edu/cediploma/', '_blank')}
                                         variant={'outlined'}
@@ -89,10 +82,8 @@ export default function Experience() {
                                     >
                                         Verify Here
                                     </Button>
-
                                 </Box>
-
-                            </Box>
+                            </EventSection>
                         </EventBody>
                     </Event>
                     <EventSeparator />
@@ -110,7 +101,6 @@ export default function Experience() {
                                 >
                                     <ul>
                                         <li>performing qa audits on lab standard operating procedures to protect the lab's ISO accreditation</li>
-                                        {/* <li>monitoring and scheduling maintenance on lab equipment</li> */}
                                         <li>verifying test results and sending lab reports to customers</li>
                                         <li>manage and dispose of hazardous waste following CDPHE and EPA regulations</li>
                                         <li>automation of the above tasks using Python and VBA to increase productivity while reducing human error</li>
@@ -184,10 +174,7 @@ export default function Experience() {
                         position: 'static'
                     }}
                 />
-
             </Box>
-
         </div>
-        // </Container>
     );
 }
