@@ -120,7 +120,7 @@ hello_world()`;
                         </Box>
                     </Box>
                 </Box>
-                <Box paddingTop={2}>
+                {/* <Box paddingTop={2}>
                     <Typography variant="h5" paragraph gutterBottom>
                         A note about data structures
                     </Typography>
@@ -152,7 +152,7 @@ hello_world()`;
                             {linEqNt}
                         </SyntaxHighlighter>
                     </Box>
-                </Box>
+                </Box> */}
                 <Box paddingTop={2}>
                     <Typography variant="h5" paragraph gutterBottom>
                         Parsing .KMZ file data
