@@ -153,7 +153,7 @@ export default function Experience() {
                             }>
                                 <ul>
                                     <li>2023 Software Innovator of the Year</li>
-                                    <li>2021 Quality Contributer of the Year</li>
+                                    <li>2021 Quality Contributor of the Year</li>
                                 </ul>
                             </EventSection>
                         </EventBody>
