@@ -16,10 +16,10 @@ export default function ProjectNotFound() {
             flexDirection={'column'}
             >
                 <Typography variant="h1">
-                    404
+                    Under Construction
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    Requested Project not Found
+                    This project page is still in development!
                 </Typography>
                 <ProjectsReturnButton />
             </Box>

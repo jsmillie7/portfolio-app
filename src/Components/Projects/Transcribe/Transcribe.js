@@ -77,10 +77,13 @@ export default function Transcribe() {
                                 This project came out of a personal request from my mom. She has worked as a
                                 transcriptionist for the courts as long as I can remember. She began developing
                                 carpal tunnel syndrome after years of repetitive motion from typing began
-                                catching up with her. This project is an ongoing work-in-progress. As a cloud
-                                developer, I wanted to help her keep working while reducing the workload on her.
-                                The solution: Create an application that transcribed the audio files using the AWS
-                                Transcribe service.
+                                catching up with her. This project is an ongoing work-in-progress.
+                            </Typography>
+                            <Typography paragraph gutterBottom>
+                                The objective of this program is to make the user's workflow more 
+                                efficient. <i>transcribe</i> provides an intuitive user interface
+                                to streamline the challenges of using a cloud-based transcription service 
+                                without a computer science background.
                             </Typography>
                         </Box>
                         <Box flex={1} display={'flex'} alignItems={'center'} justifyContent={'center'}>
@@ -263,9 +266,9 @@ export default function Transcribe() {
                     >
                         <Box width={smallWindow ? '100%' : '40%'}>
                             <Typography paragraph sx={{ paddingTop: 1 }} gutterBottom>
-                                The first version of the app had AWS keys, region, and S3 bucket name hard
-                                coded in the app. This was fixed in the new version via an app drawer UI
-                                element to show and change the user settings
+                                The prototype of the app hard-coded the AWS keys, region, and S3 bucket. 
+                                This issue was addressed via a new app drawer UI element to present 
+                                user settings
                             </Typography>
                             <Typography paragraph gutterBottom>
                                 The UI allows the user to load keys from a CSV file. It then validates

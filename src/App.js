@@ -136,7 +136,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/geomodeling" element={<Geomodeling />} />
+                {/* <Route path="/projects/geomodelng" element={<Geomodeling />} /> */}
                 <Route path="/projects/cloudsim" element={<CloudSim />} />
                 <Route path="/projects/transcribe" element={<Transcribe />} />
                 <Route path="/projects/*" element={<ProjectNotFound />} />
