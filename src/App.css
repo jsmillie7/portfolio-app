@@ -53,3 +53,8 @@ a {
 .snap-item {
   scroll-snap-align: center;
 }
+
+.event-separator-svg {
+  /* outline: 2px solid lime; */
+  color: white;
+}

@@ -89,7 +89,7 @@ export function EventSeparator() {
             justifyContent={'center'}
             flexShrink={0}
         >
-            <img src={pathSvg} width={'100px'} />
+            <img src={pathSvg} width={'100px'} className="event-separator-svg" />
         </Box>
     );
 }
