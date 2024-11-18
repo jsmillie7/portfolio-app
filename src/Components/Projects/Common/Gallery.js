@@ -35,10 +35,11 @@ export function GalleryRow({ images, end }) {
             ref={galleryRowRef}
             className={'row no-scrollbar snap-container'}
             gap={'1rem'}
+            margin={"0 1rem"}
         >
             {images.map((img, idx) => (
-                <Box className={'snap-item'} key={idx}>
-                    <img key={idx} src={img} style={{ width: '60vw', display: 'block' }} />
+                <Box className={'snap-item'} key={idx} sx={{height: "60vh"}}>
+                    <img key={idx} src={img} style={{ height: "100%", display: 'block' }} />
                 </Box>
             ))}
         </Box>

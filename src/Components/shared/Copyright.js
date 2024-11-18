@@ -10,7 +10,7 @@ export default function CopyRight() {
             paddingBottom={2}
         >
             <Typography align="center">
-                Copyright 2023 James M Smillie<br/>
+                Copyright 2024 James M Smillie<br/>
                 All Rights Reserved
             </Typography>
         </Box>

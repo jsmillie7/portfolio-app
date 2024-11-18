@@ -23,6 +23,7 @@ import CloudSim from "./Components/Projects/CloudSim/CloudSim";
 import './App.css';
 import CopyRight from "./Components/shared/Copyright";
 import Transcribe from "./Components/Projects/Transcribe/Transcribe";
+import WaterMonitor from "./Components/Projects/WaterMonitor/WaterMonitor";
 
 // const monospaceFont =  "'Space Mono', sans-serif";
 
@@ -85,7 +86,7 @@ const themeDark = createTheme({
 
 export const AppContext = createContext();
 
-let appVersion = '85';
+let appVersion = '86';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -137,6 +138,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/projects" element={<Projects />} />
                 {/* <Route path="/projects/geomodelng" element={<Geomodeling />} /> */}
+                <Route path="/projects/water-monitor" element={<WaterMonitor />} />
                 <Route path="/projects/cloudsim" element={<CloudSim />} />
                 <Route path="/projects/transcribe" element={<Transcribe />} />
                 <Route path="/projects/*" element={<ProjectNotFound />} />
@@ -154,9 +156,9 @@ export default function App() {
               textAlign: 'center'
             }}
             variant={'body1'}
-            color={'error'}
+            color={'default'}
           >
-            DEV v{appVersion}
+            v{appVersion}
           </Typography>
           {/* End of Remove */}
 

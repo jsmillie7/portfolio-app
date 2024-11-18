@@ -46,17 +46,23 @@ export function ProjectsGrid({ maxProjects }) {
             link: '/projects/cloudsim'
         },
         {
+            title: 'IoT Water Monitor',
+            desc: 'A monitor for making a dumb sprinkler smart',
+            img: "https://github.com/jsmillie7/water-monitor/blob/main/docs/img/wm-hero.png?raw=true",
+            link: '/projects/water-monitor'
+        },
+        {
             title: 'Scale-Modeling Mountains',
             desc: 'Using software and hardware to build 3d models',
             img: geoMtnImg,
             link: '/projects/geomodeling'
         },
-        {
-            title: 'CNC Laser Cutter',
-            desc: 'Building an accurate 2-axis GRBL-based laser cutter on a budget',
-            img: laserImg,
-            link: '/projects/laser'
-        },
+        // {
+        //     title: 'CNC Laser Cutter',
+        //     desc: 'Building an accurate 2-axis GRBL-based laser cutter on a budget',
+        //     img: laserImg,
+        //     link: '/projects/laser'
+        // },
         {
             title: 'transcribe',
             desc: 'Desktop application for transcribing audio files on the cloud',
