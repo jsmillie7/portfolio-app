@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ff6eb50a.css",
-    "main.js": "/static/js/main.b9a4a96b.js",
+    "main.js": "/static/js/main.44891282.js",
     "static/media/path.png": "/static/media/path.d3e1f113eca7854a3060.png",
     "static/media/usgs.png": "/static/media/usgs.cb4d8f9e700e3116d359.png",
     "static/media/mtwerner.jpg": "/static/media/mtwerner.3c370f770bc289949c6a.jpg",
@@ -20,6 +20,7 @@
     "static/media/cloudsim.png": "/static/media/cloudsim.350d8f07f04ad927f9a9.png",
     "static/media/c.png": "/static/media/c.b51722087c0285845d23.png",
     "static/media/topo.png": "/static/media/topo.684928c6dd791afe1081.png",
+    "static/media/ifttt.svg": "/static/media/ifttt.85278bf43c2f8bae8bd5b78d7886d838.svg",
     "static/media/buffs.svg": "/static/media/buffs.a7c8efba3b16c066d1f2bc739c514999.svg",
     "static/media/aws.svg": "/static/media/aws.f8910504ba833c01d55bd69223f125fe.svg",
     "static/media/electron.svg": "/static/media/electron.9debe94528b8e0526456387231404856.svg",
@@ -34,10 +35,10 @@
     "static/media/react.svg": "/static/media/react.13aa0b501e19e6878890ea9a2ea44466.svg",
     "index.html": "/index.html",
     "main.ff6eb50a.css.map": "/static/css/main.ff6eb50a.css.map",
-    "main.b9a4a96b.js.map": "/static/js/main.b9a4a96b.js.map"
+    "main.44891282.js.map": "/static/js/main.44891282.js.map"
   },
   "entrypoints": [
     "static/css/main.ff6eb50a.css",
-    "static/js/main.b9a4a96b.js"
+    "static/js/main.44891282.js"
   ]
 }
